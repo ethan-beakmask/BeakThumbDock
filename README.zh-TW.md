@@ -8,16 +8,17 @@ Windows 的免安裝小工具：把多個視窗（包含其他虛擬桌面上的
 
 上圖中，縮圖區靠在螢幕左邊，有 8 個編號的槽位，每個槽位是一個視窗的即時畫面（瀏覽器、終端機、影片、通訊軟體）。右邊的瀏覽器最大化在剩下的空間裡，就像視窗會停在工作列前面一樣。點槽位 4，或按 `Alt+Shift+4`，那個視窗就會在同一個位置被帶到前面。
 
+- 每個縮圖都是即時影像，不是靜態截圖：影片會繼續播放，網頁會在槽位裡持續更新。Chrome 與 Edge 被其他視窗蓋住或在其他虛擬桌面時，要加啟動參數才能保持即時，見[手冊第 12 節](docs/manual.md)
 - 縮圖區可靠左／右／上／下，或蓋滿整個螢幕（縮圖牆）
 - 單螢幕、雙螢幕、多個虛擬桌面
 - 依規則自動找回視窗，重新開機後不必重新設定
 - 多個佈局、全域快速鍵、啟動時自動開啟程式
 - 介面語言：繁體中文、English、日本語、简体中文
-- 單一 exe：不需要安裝、不需要系統管理員權限、不寫登錄檔、不連網路
+- 單一 exe，已內含 .NET 執行環境：不必另外安裝 .NET、不需要安裝程式、不需要系統管理員權限、不寫登錄檔、不連網路
 
 ## 使用
 
-到 [Releases](../../releases) 下載 `ThumbDock.exe`（執行檔名稱為 `ThumbDock.exe`），放進自己有寫入權限的資料夾後執行。需要 Windows 11；Windows 10 沒有測試過。
+下載 [`ThumbDock.exe` 0.11.6](https://github.com/ethan-beakmask/BeakThumbDock/releases/download/v0.11.6/ThumbDock.exe)（約 52 MB，SHA256 `d2a0f3172d2089580d2ac64af83661dfaacf9a8aa43a9ebdaabe7631b4be7164`），放進自己有寫入權限的資料夾後執行。這個檔案已內含 .NET 執行環境，不必另外安裝 .NET。其他版本在 [Releases](../../releases) 頁面。需要 Windows 11；Windows 10 沒有測試過。
 
 操作說明見 [docs/manual.md](docs/manual.md)（網頁版：[docs/manual.html](docs/manual.html)）。
 

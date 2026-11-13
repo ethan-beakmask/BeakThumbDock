@@ -8,16 +8,17 @@ A portable tool for Windows that turns several windows, including windows on oth
 
 In the screenshot, the thumbnail area is docked on the left with eight numbered slots. Each slot shows a live picture of one window: browsers, a terminal, a video, chat programs. The browser on the right is maximized into the remaining space, the same way a window stops at the taskbar. Clicking slot 4, or pressing `Alt+Shift+4`, brings that window to the front in its place.
 
+- Every thumbnail is a live picture, not a snapshot: video keeps playing and pages keep updating inside the slot. Chrome and Edge need a startup flag to stay live while covered or on another virtual desktop; see [section 12 of the manual](docs/manual.en.md)
 - The thumbnail area docks left, right, top or bottom like the taskbar, or covers the whole screen as a thumbnail wall
 - Single monitor, dual monitor, and multiple virtual desktops
 - Windows are found again by rule, so nothing has to be set up again after a reboot
 - Multiple layouts, global hotkeys, and launching programs at startup
 - Interface languages: 繁體中文, English, 日本語, 简体中文
-- A single exe: no installation, no administrator rights, no registry entries, no network access
+- A single exe with the .NET runtime built in: no .NET installation, no installer, no administrator rights, no registry entries, no network access
 
 ## Getting started
 
-1. Download `ThumbDock.exe` from [Releases](../../releases).
+1. Download [`ThumbDock.exe` 0.11.6](https://github.com/ethan-beakmask/BeakThumbDock/releases/download/v0.11.6/ThumbDock.exe) (about 52 MB, SHA256 `d2a0f3172d2089580d2ac64af83661dfaacf9a8aa43a9ebdaabe7631b4be7164`). It includes the .NET runtime, so .NET does not have to be installed. Other versions are on the [Releases](../../releases) page.
 2. Put it in a folder you can write to (settings and logs are stored next to the exe) and run it.
 3. Click an empty slot and tick the windows you want to watch.
 
