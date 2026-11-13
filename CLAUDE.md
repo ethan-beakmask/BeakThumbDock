@@ -4,13 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 專案概覽
 
-ThumbDock：Windows 免安裝工具（C#、WinForms、.NET 10）。用 DWM Thumbnail API 把多個來源視窗（含其他虛擬桌面）以即時縮圖排在 AppBar 縮圖區，點縮圖把視窗帶到操作區，縮圖常駐。需求以 `THUMBDOCK_SPEC.md` 為準；驗收狀態與「與規格的已同意差異」見 `docs/internal/acceptance.md`（規格階段 0～3 已全部驗收，**實作與規格有出入時以 acceptance.md 為準**，例如 `place` 是每槽位而非整個佈局）。下一版待辦見 `docs/internal/next-version-backlog.md`。
+BeakThumbDock（正式名稱，2026-11-13 定案；只用在 repo 名與文件標題，執行檔、組件名、命名空間、介面文字一律維持 `ThumbDock`，不要改）：Windows 免安裝工具（C#、WinForms、.NET 10）。用 DWM Thumbnail API 把多個來源視窗（含其他虛擬桌面）以即時縮圖排在 AppBar 縮圖區，點縮圖把視窗帶到操作區，縮圖常駐。需求以 `THUMBDOCK_SPEC.md` 為準；驗收狀態與「與規格的已同意差異」見 `docs/internal/acceptance.md`（規格階段 0～3 已全部驗收，**實作與規格有出入時以 acceptance.md 為準**，例如 `place` 是每槽位而非整個佈局）。下一版待辦見 `docs/internal/next-version-backlog.md`。
 
 經 Bash 工具的 python heredoc 寫入含 `\n` 的 C# 字串時會被先解跳脫成真的換行，請用 `chr(92)` 或直接用 Edit 工具。
 
 `docs/internal/`（驗收紀錄、待辦、手動測試步驟、spike 結果）是開發過程文件，只留在本機，已被 `.gitignore` 排除，公開 repo 裡沒有；`publish/`、`backup-source/` 也不進 repo。翻譯審閱用 CSV 在 `docs/translations/`。
 
-文件、介面文字用繁體中文（台灣）；程式碼與註解用英文。
+文件、介面文字用繁體中文（台灣）；程式碼與註解用英文。對外文件另有英文與日文：`README.md`（英）／`README.ja.md`／`README.zh-TW.md`，`docs/manual.md`（繁中，原稿）／`manual.en.md`／`manual.ja.md`，`docs/launch-config.*.md`，給譯者的 `docs/translating.en.md`／`.ja.md`。改了繁中手冊或 launch-config 要同步英日版，再跑 `python tools/build-manual.py` 重建三個 `manual*.html`。README 的截圖放 `docs/images/`。
+
+原始碼以 git 為準（`.gitattributes` 設 `* text=auto`，repo 內一律 LF）；Windows 端從 GitHub clone 後建置，不再用壓縮包搬檔。
 
 ## 建置與測試
 

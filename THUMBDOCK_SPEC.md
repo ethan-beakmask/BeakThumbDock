@@ -1,4 +1,6 @@
-# ThumbDock 開發規格（暫名）
+# BeakThumbDock 開發規格
+
+正式名稱為 BeakThumbDock（2026-11-13 定案）。程式、執行檔、命名空間與下文沿用開發期間的名稱 ThumbDock。
 
 給 Claude Code 的開發文件。請先完整讀完，再從「階段 0」開始做，每個階段通過驗收後才進下一階段。
 

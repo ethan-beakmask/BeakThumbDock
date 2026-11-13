@@ -1,32 +1,52 @@
-# ThumbDock
+# BeakThumbDock
 
-Windows 的免安裝小工具：把多個視窗（包含其他虛擬桌面上的視窗）變成即時縮圖，排在螢幕邊緣的縮圖區。點一下縮圖就把該視窗帶到前面，縮圖常駐，適合同時監看多個視窗或在大量視窗之間快速切換。
+English | [日本語](README.ja.md) | [繁體中文](README.zh-TW.md)
 
-- 縮圖區可靠左／右／上／下，或蓋滿整個螢幕（縮圖牆）
-- 單螢幕、雙螢幕、多個虛擬桌面
-- 依規則自動找回視窗，重新開機後不必重新設定
-- 多個佈局、全域快速鍵、啟動時自動開啟程式
-- 介面語言：繁體中文、English、日本語、简体中文
+A portable tool for Windows that turns several windows, including windows on other virtual desktops, into live thumbnails lined up in a thumbnail area at the edge of the screen. Click a thumbnail and that window comes to the front. The thumbnails stay on screen, which suits watching several windows at once or switching quickly among many windows.
 
-## 使用
+![Thumbnail area docked on the left, with a window maximized beside it](docs/images/dock-left.png)
 
-到 Releases 下載 `ThumbDock.exe`，放進自己有寫入權限的資料夾後執行。不需要安裝，也不需要系統管理員權限。
+In the screenshot, the thumbnail area is docked on the left with eight numbered slots. Each slot shows a live picture of one window: browsers, a terminal, a video, chat programs. The browser on the right is maximized into the remaining space, the same way a window stops at the taskbar. Clicking slot 4, or pressing `Alt+Shift+4`, brings that window to the front in its place.
 
-操作說明見 [docs/manual.md](docs/manual.md)（網頁版：[docs/manual.html](docs/manual.html)）。
+- The thumbnail area docks left, right, top or bottom like the taskbar, or covers the whole screen as a thumbnail wall
+- Single monitor, dual monitor, and multiple virtual desktops
+- Windows are found again by rule, so nothing has to be set up again after a reboot
+- Multiple layouts, global hotkeys, and launching programs at startup
+- Interface languages: 繁體中文, English, 日本語, 简体中文
+- A single exe: no installation, no administrator rights, no registry entries, no network access
 
-在公司環境被端點防護軟體攔截時，請見手冊第 16 節。
+## Getting started
 
-## 翻譯
+1. Download `ThumbDock.exe` from [Releases](../../releases).
+2. Put it in a folder you can write to (settings and logs are stored next to the exe) and run it.
+3. Click an empty slot and tick the windows you want to watch.
 
-日文與簡體中文是機器翻譯的初稿，沒有經過母語者審閱，歡迎回報或提交修正。
+The executable is named `ThumbDock.exe`. Windows 11 is required; Windows 10 has not been tested.
 
-- 新增語言或修正譯文的方法：[docs/i18n.md](docs/i18n.md)、[docs/i18n-translation-format.md](docs/i18n-translation-format.md)
-- 審閱用的 CSV：`docs/translations/`
-- 語言檔可以直接放進 exe 旁的 `config\lang\` 使用，不需要重新建置
+Full instructions: [User manual](docs/manual.en.md) ([web page version](docs/manual.en.html)).
 
-## 從原始碼建置
+If the program is blocked by endpoint protection software in a corporate environment, see section 16 of the manual. The SHA256 hash of each release file is listed on the release page.
 
-需要 .NET 10 SDK（免安裝版的做法見 [docs/dotnet-sdk-portable.md](docs/dotnet-sdk-portable.md)）。
+## Documentation
+
+| Document | Content |
+|---|---|
+| [docs/manual.en.md](docs/manual.en.md) | User manual |
+| [docs/launch-config.en.md](docs/launch-config.en.md) | Launch config format (launching programs at startup) |
+| [docs/translating.en.md](docs/translating.en.md) | Fixing a translation or adding a language |
+| [THUMBDOCK_SPEC.md](THUMBDOCK_SPEC.md) | Original requirements specification (Traditional Chinese) |
+
+## Translations
+
+Japanese and Simplified Chinese are machine-translated first drafts that have not been reviewed by native speakers. Reports and corrections are welcome.
+
+- A language file can be dropped into `config\lang\` next to the exe and used without rebuilding.
+- Review spreadsheets (CSV) are in `docs/translations/`.
+- See [docs/translating.en.md](docs/translating.en.md).
+
+## Building from source
+
+Requires the .NET 10 SDK on Windows.
 
 ```powershell
 dotnet build ThumbDock.slnx
@@ -34,18 +54,29 @@ dotnet test ThumbDock.slnx
 dotnet publish ThumbDock\ThumbDock.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o publish\self-contained
 ```
 
-手冊的網頁版由 `python tools/build-manual.py` 從 `docs/manual.md` 產生。
+The SDK can be used without installing it or changing PATH:
 
-## 專案結構
+```powershell
+Invoke-WebRequest https://dot.net/v1/dotnet-install.ps1 -OutFile "$env:TEMP\dotnet-install.ps1"
+& "$env:TEMP\dotnet-install.ps1" -Channel 10.0 -InstallDir "$env:LOCALAPPDATA\Microsoft\dotnet" -NoPath
+& "$env:LOCALAPPDATA\Microsoft\dotnet\dotnet.exe" build ThumbDock.slnx
+```
 
-| 路徑 | 內容 |
+The web page versions of the manual are generated from the Markdown files by `python tools/build-manual.py`.
+
+## Project layout
+
+| Path | Content |
 |---|---|
-| `ThumbDock/` | 主程式（`Native/`、`Core/`、`Layout/`、`UI/`、`Lang/`）與單元測試 |
-| `tools/LangTool/` | 翻譯檔維護工具 |
-| `spike/` | 早期的技術驗證程式，不是正式程式 |
-| `docs/` | 手冊與格式說明 |
-| `THUMBDOCK_SPEC.md` | 原始需求規格 |
+| `ThumbDock/` | The program (`Native/`, `Core/`, `Layout/`, `UI/`, `Lang/`) and unit tests |
+| `tools/LangTool/` | Maintenance tool for translation files |
+| `spike/` | Early technical proof of concept; not part of the product |
+| `docs/` | Manual and format documents |
 
-## 作者
+## License
 
-Ethan Yu（大E）
+[MIT](LICENSE)
+
+## Author
+
+Ethan Yu (大E)

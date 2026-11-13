@@ -1,0 +1,12 @@
+# Windows-only project: every text file is checked out with CRLF on every machine (Windows and
+# Linux alike), and stored as LF inside the repository. This keeps files from showing as fully
+# modified when the project moves between operating systems.
+* text=auto eol=crlf
+
+# Translation review sheets hold both CRLF (row ends, some keys) and bare LF (inside cells, other
+# keys). The line endings are data that LangTool matches on, so git must not convert them.
+docs/translations/*.csv -text
+
+*.ico binary
+*.png binary
+*.jpg binary

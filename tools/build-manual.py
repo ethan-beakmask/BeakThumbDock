@@ -1,4 +1,4 @@
-"""Builds docs/manual.html from docs/manual.md (no third-party packages).
+"""Builds docs/manual*.html from docs/manual*.md, one page per language (no third-party packages).
 
 Usage:  python tools/build-manual.py
 
@@ -10,8 +10,12 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SOURCE = ROOT / "docs" / "manual.md"
-TARGET = ROOT / "docs" / "manual.html"
+# (file suffix, html lang, table-of-contents heading, preferred CJK fonts)
+LANGUAGES = [
+    ("", "zh-Hant", "目錄", '"Microsoft JhengHei","PingFang TC","Noto Sans TC"'),
+    (".en", "en", "Contents", '"Helvetica Neue",Arial'),
+    (".ja", "ja", "目次", '"Yu Gothic UI","Meiryo","Hiragino Sans","Noto Sans JP"'),
+]
 
 CSS = """
 :root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d0d7de; --soft:#f6f8fa; --accent:#b35900; --link:#0969da; }
@@ -20,7 +24,7 @@ CSS = """
 }
 * { box-sizing: border-box; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.75;
-  font-family:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif; }
+  font-family:"Segoe UI",__FONTS__,sans-serif; }
 .page { display:grid; grid-template-columns:260px minmax(0,1fr); gap:40px; max-width:1180px; margin:0 auto; padding:32px 24px 80px; }
 nav { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; font-size:14px; }
 nav .title { font-weight:600; color:var(--muted); margin-bottom:8px; }
@@ -125,20 +129,29 @@ def convert(lines: list[str]) -> tuple[str, str, list[tuple[str, str]]]:
     return title, "\n".join(body), toc
 
 
-def main() -> None:
-    title, body, toc = convert(SOURCE.read_text(encoding="utf-8").splitlines())
+def md_link_to_html(body: str) -> str:
+    """Links between manual pages point at the .md files; in the html pages they must point at the html."""
+    return re.sub(r'href="(manual(?:\.[a-z]+)?)\.md"', r'href="\1.html"', body)
+
+
+def build(suffix: str, lang: str, toc_title: str, fonts: str) -> None:
+    source = ROOT / "docs" / f"manual{suffix}.md"
+    target = ROOT / "docs" / f"manual{suffix}.html"
+    title, body, toc = convert(source.read_text(encoding="utf-8").splitlines())
+    body = md_link_to_html(body)
+    css = CSS.replace("__FONTS__", fonts)
     nav = "".join(f'<a href="#{a}">{html.escape(t)}</a>' for a, t in toc)
     page = f"""<!doctype html>
-<html lang="zh-Hant">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
-<style>{CSS}</style>
+<style>{css}</style>
 </head>
 <body>
 <div class="page">
-<nav><div class="title">目錄</div>{nav}</nav>
+<nav><div class="title">{toc_title}</div>{nav}</nav>
 <main>
 {body}
 </main>
@@ -146,8 +159,13 @@ def main() -> None:
 </body>
 </html>
 """
-    TARGET.write_text(page, encoding="utf-8", newline="\n")
-    print(f"{TARGET.relative_to(ROOT)}: {len(toc)} sections, {len(page)} characters")
+    target.write_text(page, encoding="utf-8", newline="\r\n")
+    print(f"{target.relative_to(ROOT)}: {len(toc)} sections, {len(page)} characters")
+
+
+def main() -> None:
+    for language in LANGUAGES:
+        build(*language)
 
 
 if __name__ == "__main__":

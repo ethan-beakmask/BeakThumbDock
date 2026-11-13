@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ThumbDock 操作手冊</title>
+<title>BeakThumbDock 操作手冊</title>
 <style>
 :root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d0d7de; --soft:#f6f8fa; --accent:#b35900; --link:#0969da; }
 @media (prefers-color-scheme: dark) {
@@ -42,9 +42,10 @@ strong { color:var(--accent); }
 <div class="page">
 <nav><div class="title">目錄</div><a href="#s1">1. 系統需求與取得</a><a href="#s2">2. 第一次啟動</a><a href="#s3">3. 把視窗放進槽位</a><a href="#s4">4. 使用縮圖</a><a href="#s5">5. 設定視窗</a><a href="#s9">6. 縮圖牆（全螢幕）</a><a href="#s10">7. 雙螢幕</a><a href="#s11">8. 編輯槽位位置</a><a href="#s12">9. 快速鍵</a><a href="#s13">10. 其他虛擬桌面的視窗</a><a href="#s14">11. 自動找回視窗與啟動時呼叫程式</a><a href="#s17">12. Chrome 縮圖停格或變黑</a><a href="#s18">13. 佈局</a><a href="#s19">14. 語言</a><a href="#s20">15. 命令列參數與同時開多個</a><a href="#s21">16. 公司環境與端點防護軟體</a><a href="#s22">17. 已知行為與限制</a><a href="#s23">18. 檔案位置與疑難排解</a><a href="#s24">19. 移除</a></nav>
 <main>
-<h1>ThumbDock 操作手冊</h1>
+<h1>BeakThumbDock 操作手冊</h1>
 <p>適用版本：0.11.6</p>
-<p>ThumbDock 是 Windows 的免安裝小工具。它把多個視窗（包含其他虛擬桌面上的視窗）變成即時縮圖，排在螢幕邊緣的「縮圖區」。點一下縮圖，該視窗就會被帶到前面；縮圖會一直留在畫面上，適合同時監看多個視窗，或在很多視窗之間快速切換。</p>
+<p>BeakThumbDock（程式與執行檔名稱為 ThumbDock）是 Windows 的免安裝小工具。它把多個視窗（包含其他虛擬桌面上的視窗）變成即時縮圖，排在螢幕邊緣的「縮圖區」。點一下縮圖，該視窗就會被帶到前面；縮圖會一直留在畫面上，適合同時監看多個視窗，或在很多視窗之間快速切換。</p>
+<p>其他語言：<a href="manual.en.html">English</a> | <a href="manual.ja.html">日本語</a></p>
 <h2 id="s1">1. 系統需求與取得</h2>
 <ul><li>Windows 11（開發與測試都在 Windows 11 進行；Windows 10 沒有測試過）。</li><li>不需要安裝，也不需要系統管理員權限。</li></ul>
 <p>發行檔有兩種，功能完全相同：</p>
@@ -60,7 +61,7 @@ strong { color:var(--accent); }
 <p>「選擇視窗」列出目前所有視窗，一列一個。左邊每一欄代表一個槽位（欄位標題就是槽位編號）。</p>
 <ul><li><strong>放進槽位</strong>：在該視窗那一列、想要的槽位那一欄勾選。</li><li><strong>取消</strong>：再點一次同一格。</li><li><strong>十字輔助線</strong>：滑鼠移到勾選格上時，那一列與那一欄會變色，交叉的那一格顏色較深，方便在視窗和槽位很多時確認沒有勾錯。</li><li>清單會自動更新，不需要重新開啟。</li></ul>
 <p>其他欄位：</p>
-<div class="table"><table><thead><tr><th>欄位</th><th>說明</th></tr></thead><tbody><tr><td>點縮圖時</td><td>點一下切換：不變 → 最大化 → 填滿操作區。決定點縮圖後該視窗要怎麼擺</td></tr><tr><td>原位置</td><td>視窗被放進槽位時記錄的位置</td></tr><tr><td>虛擬桌面</td><td>視窗在目前桌面或其他桌面</td></tr><tr><td>權限</td><td>顯示「管理員（無法移動）」代表該視窗以系統管理員身分執行（見第 15 節）</td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>欄位</th><th>說明</th></tr></thead><tbody><tr><td>點縮圖時</td><td>點一下切換：不變 → 最大化 → 填滿操作區。決定點縮圖後該視窗要怎麼擺</td></tr><tr><td>原位置</td><td>視窗被放進槽位時記錄的位置</td></tr><tr><td>虛擬桌面</td><td>視窗在目前桌面或其他桌面</td></tr><tr><td>權限</td><td>顯示「管理員（無法移動）」代表該視窗以系統管理員身分執行（見第 17 節）</td></tr></tbody></table></div>
 <p>「點縮圖時」的三種方式：</p>
 <div class="table"><table><thead><tr><th>方式</th><th>效果</th></tr></thead><tbody><tr><td>不變</td><td>只把視窗帶到前面，位置與大小不變</td></tr><tr><td>最大化</td><td>把視窗最大化（不會蓋到靠邊的縮圖區）</td></tr><tr><td>填滿操作區</td><td>不最大化，把視窗大小調成「螢幕扣掉縮圖區」的範圍</td></tr></tbody></table></div>
 <p>「選擇視窗」上方的功能表：佈局、設定…、檢視、啟動時執行。</p>

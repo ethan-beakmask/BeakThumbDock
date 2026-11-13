@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeakThumbDock User Manual</title>
+<style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d0d7de; --soft:#f6f8fa; --accent:#b35900; --link:#0969da; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#16181c; --fg:#e6e8eb; --muted:#9aa4af; --line:#30363d; --soft:#1f2329; --accent:#ffa028; --link:#6cb6ff; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.75;
+  font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+.page { display:grid; grid-template-columns:260px minmax(0,1fr); gap:40px; max-width:1180px; margin:0 auto; padding:32px 24px 80px; }
+nav { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; font-size:14px; }
+nav .title { font-weight:600; color:var(--muted); margin-bottom:8px; }
+nav a { display:block; padding:3px 0 3px 10px; border-left:2px solid var(--line); color:var(--fg); text-decoration:none; }
+nav a:hover { border-left-color:var(--accent); color:var(--accent); }
+main { min-width:0; }
+h1 { font-size:30px; margin:0 0 8px; }
+h2 { font-size:22px; margin:44px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+h3 { font-size:17px; margin:28px 0 8px; }
+p, ul, ol { margin:10px 0; }
+li { margin:4px 0; }
+a { color:var(--link); }
+code { font-family:Consolas,"Cascadia Mono",monospace; font-size:.92em; background:var(--soft); border:1px solid var(--line); border-radius:4px; padding:1px 5px; }
+pre { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:12px 14px; overflow-x:auto; }
+pre code { background:none; border:0; padding:0; }
+.table { overflow-x:auto; margin:12px 0; }
+table { border-collapse:collapse; width:100%; font-size:15px; }
+th, td { border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top; }
+th { background:var(--soft); white-space:nowrap; }
+strong { color:var(--accent); }
+@media (max-width: 820px) {
+  .page { grid-template-columns:1fr; gap:8px; padding:20px 16px 60px; }
+  nav { position:static; max-height:none; border-bottom:1px solid var(--line); padding-bottom:12px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<nav><div class="title">Contents</div><a href="#s1">1. Requirements and download</a><a href="#s2">2. First start</a><a href="#s3">3. Putting windows into slots</a><a href="#s4">4. Using thumbnails</a><a href="#s5">5. The settings window</a><a href="#s9">6. Thumbnail wall (full screen)</a><a href="#s10">7. Dual monitor</a><a href="#s11">8. Editing slot positions</a><a href="#s12">9. Hotkeys</a><a href="#s13">10. Windows on other virtual desktops</a><a href="#s14">11. Finding windows again, and launching programs at startup</a><a href="#s17">12. Chrome thumbnails freeze or turn black</a><a href="#s18">13. Layouts</a><a href="#s19">14. Language</a><a href="#s20">15. Command line and running several instances</a><a href="#s21">16. Corporate environments and endpoint protection</a><a href="#s22">17. Known behaviour and limitations</a><a href="#s23">18. File locations and troubleshooting</a><a href="#s24">19. Removal</a></nav>
+<main>
+<h1>BeakThumbDock User Manual</h1>
+<p>Applies to version 0.11.6</p>
+<p>BeakThumbDock (the program and its executable are called ThumbDock) is a portable tool for Windows. It turns several windows, including windows on other virtual desktops, into live thumbnails and lines them up in a &quot;thumbnail area&quot; at the edge of the screen. Click a thumbnail and that window comes to the front; the thumbnails stay on screen, which suits watching several windows at once or switching quickly among many windows.</p>
+<p>Other languages: <a href="manual.html">繁體中文</a> | <a href="manual.ja.html">日本語</a></p>
+<h2 id="s1">1. Requirements and download</h2>
+<ul><li>Windows 11 (developed and tested on Windows 11; Windows 10 has not been tested).</li><li>No installation and no administrator rights are needed.</li></ul>
+<p>There are two release packages with identical features:</p>
+<div class="table"><table><thead><tr><th>Package</th><th>Files</th><th>Extra install needed</th></tr></thead><tbody><tr><td>Self-contained (recommended)</td><td>A single <code>ThumbDock.exe</code>, about 50 MB</td><td>None</td></tr><tr><td>Framework-dependent</td><td><code>ThumbDock.exe</code> plus a few small files, under 1 MB</td><td>.NET 10 Desktop Runtime</td></tr></tbody></table></div>
+<p>Put the files in a <strong>folder you can write to</strong> (for example <code>D:\Tools\ThumbDock</code>) and run it. Settings and logs are stored next to the exe, so do not use a location such as <code>C:\Program Files</code> that needs administrator rights to write.</p>
+<h2 id="s2">2. First start</h2>
+<ol><li>Run <code>ThumbDock.exe</code>. A thumbnail area appears on the left of the screen with 8 empty slots showing &quot;Waiting - Click to choose a window&quot;.</li><li>On the first start a tip about Chrome appears (see section 12). Click &quot;Got it&quot;; tick &quot;Don&#x27;t show again&quot; if you do not want to see it again.</li><li>A white icon with a black circle appears in the notification area (system tray).</li></ol>
+<p>Tray icon:</p>
+<div class="table"><table><thead><tr><th>Action</th><th>Result</th></tr></thead><tbody><tr><td>Double-click</td><td>Opens &quot;Select Windows&quot;</td></tr><tr><td>Right-click</td><td>Menu: Choose window…, Settings…, Exit</td></tr></tbody></table></div>
+<p>To quit ThumbDock, use &quot;Exit&quot; in the tray menu.</p>
+<h2 id="s3">3. Putting windows into slots</h2>
+<p>To open &quot;Select Windows&quot;: click any empty slot, double-click the tray icon, or right-click the thumbnail area and choose &quot;Choose window…&quot;.</p>
+<p>&quot;Select Windows&quot; lists every open window, one per row. Each column on the left stands for one slot (the column header is the slot number).</p>
+<ul><li><strong>Put into a slot</strong>: tick the cell in that window&#x27;s row under the slot you want.</li><li><strong>Remove</strong>: click the same cell again.</li><li><strong>Crosshair guide</strong>: when the mouse is over a tick cell, its row and column are highlighted and the crossing cell is darker, so you can check your choice when there are many windows and slots.</li><li>The list refreshes by itself; there is no need to reopen it.</li></ul>
+<p>Other columns:</p>
+<div class="table"><table><thead><tr><th>Column</th><th>Meaning</th></tr></thead><tbody><tr><td>On thumbnail click</td><td>Click to cycle: unchanged → maximize → fill work area. Decides how the window is placed after its thumbnail is clicked</td></tr><tr><td>Original position</td><td>The window&#x27;s position recorded when it was put into the slot</td></tr><tr><td>Virtual desktop</td><td>Whether the window is on the current desktop or another one</td></tr><tr><td>Privilege</td><td>&quot;Administrator (cannot be moved)&quot; means the window runs as administrator (see section 17)</td></tr></tbody></table></div>
+<p>The three &quot;On thumbnail click&quot; choices:</p>
+<div class="table"><table><thead><tr><th>Choice</th><th>Effect</th></tr></thead><tbody><tr><td>Unchanged</td><td>Only brings the window to the front; position and size stay the same</td></tr><tr><td>Maximized</td><td>Maximizes the window (it does not cover a docked thumbnail area)</td></tr><tr><td>Fill work area</td><td>Does not maximize; resizes the window to &quot;the screen minus the thumbnail area&quot;</td></tr></tbody></table></div>
+<p>The menu bar at the top of &quot;Select Windows&quot;: Layout, Settings…, View, Run at startup.</p>
+<h2 id="s4">4. Using thumbnails</h2>
+<div class="table"><table><thead><tr><th>Action</th><th>Result</th></tr></thead><tbody><tr><td>Click a thumbnail</td><td>Brings that window to the front and places it according to &quot;On thumbnail click&quot;</td></tr><tr><td>Drag a thumbnail onto another and release</td><td>The two thumbnails swap places (slot numbers and hotkeys follow the position)</td></tr><tr><td>Right-click a thumbnail</td><td>Choose window…, Edit match rule…, Clear slot, Edit slot positions…</td></tr><tr><td>Right-click an empty part of the thumbnail area</td><td>Edit slot positions…, Choose window…, Settings…</td></tr></tbody></table></div>
+<p>The thumbnail of the window that is currently in front gets an orange frame.</p>
+<p>If a source window is minimized, its thumbnail stops updating (a Windows limitation) and the slot shows &quot;Minimized - thumbnail paused (click to restore)&quot;. In Settings you can tick &quot;Automatically restore a minimized source window to the bottom of the z-order&quot; so it is restored without covering other windows.</p>
+<h2 id="s5">5. The settings window</h2>
+<p>Open it from the tray menu &quot;Settings…&quot; or from &quot;Settings…&quot; in &quot;Select Windows&quot;. The settings window can stay open together with &quot;Select Windows&quot;; changes apply when you click OK. While the settings window is open you cannot switch or manage layouts, or edit slot positions.</p>
+<h3 id="s6">5.1 Thumbnail area position</h3>
+<div class="table"><table><thead><tr><th>Option</th><th>Meaning</th></tr></thead><tbody><tr><td>Left / Right / Top / Bottom (docked)</td><td>Occupies one edge of the screen like the taskbar; other windows do not cover it when maximized</td></tr><tr><td>Full screen (thumbnail wall)</td><td>Thumbnails cover the whole screen (see section 6)</td></tr></tbody></table></div>
+<ul><li><strong>Width / height</strong>: the thickness of a docked thumbnail area, in pixels at 100% scaling; it grows with the display scaling. The upper limit is 70% of the screen in that direction.</li><li><strong>Show window title below each slot</strong>: turn it off to make the thumbnails slightly larger.</li></ul>
+<h3 id="s7">5.2 Columns × rows</h3>
+<p>The number of slots is &quot;columns × rows&quot;, up to 100. Thumbnails are arranged in a grid of equal size, alignment and gap.</p>
+<ul><li>A docked thumbnail area is narrow; 1 column × 8 rows or 2 columns × 8 rows are typical.</li><li>You can set the gap, or tick &quot;Fixed thumbnail size&quot; to give each cell a width and height (scaled down proportionally when it does not fit).</li><li>Slots are rearranged only when these settings (or the thumbnail area position or size) change; positions you adjusted by hand are not overwritten by normal use.</li><li>With 24 slots or more a warning appears first: screen updates and operation become noticeably slower.</li><li><strong>Adding slots</strong>: new slots go into free space; existing slots stay where they are.</li><li><strong>Removing slots</strong>: only unbound slots are removed. If there are not enough, right-click a slot and choose &quot;Clear slot&quot; first, or tick &quot;unbind all and rearrange&quot;.</li></ul>
+<h3 id="s8">5.3 Other settings</h3>
+<ul><li><strong>Mode</strong>: single monitor or dual monitor (see section 7).</li><li><strong>Windows on other virtual desktops</strong>: see section 10.</li><li><strong>Hotkeys</strong>: see section 9.</li><li><strong>Launch programs at startup</strong>: see section 11.</li><li><strong>Language</strong>: see section 14.</li></ul>
+<h2 id="s9">6. Thumbnail wall (full screen)</h2>
+<p>In single-monitor mode, set the thumbnail area position to &quot;Full screen&quot; and the thumbnails cover the whole screen as a &quot;thumbnail wall&quot;.</p>
+<ul><li>Click a thumbnail: that window is shown on top of the wall.</li><li>Return to the wall: press the &quot;Show / hide thumbnail area&quot; hotkey (default <code>Ctrl+Alt+D</code>). When the wall is already on top, pressing it again returns to the previous window.</li><li>Keep &quot;When returning to the thumbnail wall, restore windows that were maximized over the wall to their original size and position&quot; ticked; it keeps covered browsers from freezing.</li><li><strong>Mouse return</strong> (off by default): when ticked in Settings, resting the mouse at the middle of the left screen edge for about 0.4 seconds returns to the wall. It is not triggered while dragging a window. It works only for a single-monitor wall.</li></ul>
+<h2 id="s10">7. Dual monitor</h2>
+<p>Change the mode to &quot;Dual monitor&quot; in Settings and choose:</p>
+<ul><li><strong>Thumbnail monitor</strong>: the monitor that holds the thumbnail area.</li><li><strong>Focus monitor</strong>: the monitor where you actually work with the windows. The two must be different.</li></ul>
+<p>When a thumbnail is clicked, <strong>a window that was on the thumbnail monitor</strong> is moved to the focus monitor; a window on any other monitor stays where it is and is only brought to the front.</p>
+<p>With &quot;Full screen&quot; in dual-monitor mode, thumbnails cover only the thumbnail monitor. If one of the monitors is unplugged, ThumbDock temporarily switches to single-monitor mode and goes back by itself when the monitor returns.</p>
+<h2 id="s11">8. Editing slot positions</h2>
+<p>Right-click the thumbnail area and choose &quot;Edit slot positions…&quot; to enter edit mode; slot frames become blue dashed lines. The built-in <code>default</code> layout cannot be edited; use &quot;Save as new layout&quot; first.</p>
+<div class="table"><table><thead><tr><th>Action</th><th>Result</th></tr></thead><tbody><tr><td>Drag a slot</td><td>Move</td></tr><tr><td>Drag the right edge, bottom edge or bottom-right corner of a slot</td><td>Resize</td></tr><tr><td>Move near another slot or the edge of the thumbnail area</td><td>Edges snap into alignment (same row, same column, adjacent with a gap, same width or height)</td></tr><tr><td>Hold <code>Alt</code> while dragging</td><td>No snapping; moves pixel by pixel</td></tr><tr><td>Click a slot</td><td>Select it (the frame becomes a thick solid line)</td></tr><tr><td>Press <code>Del</code> with a slot selected</td><td>Deletes the slot (no confirmation)</td></tr><tr><td>Right-click a slot → &quot;Delete this slot&quot;</td><td>Same as above</td></tr><tr><td>Right-click empty space → &quot;Add slot here&quot;</td><td>Adds a slot</td></tr></tbody></table></div>
+<p>When done, choose &quot;Finish editing&quot; in the right-click menu. Deleting a slot that has a window bound to it also deletes its match rule.</p>
+<h2 id="s12">9. Hotkeys</h2>
+<p>Change them in the &quot;Hotkeys&quot; block of the settings window. They are shared by all layouts.</p>
+<div class="table"><table><thead><tr><th>Function</th><th>Default</th></tr></thead><tbody><tr><td>Show / hide thumbnail area (returns to the wall in wall mode)</td><td><code>Ctrl+Alt+D</code></td></tr><tr><td>Switch to slot 1–9</td><td><code>Alt+Shift+1</code> to <code>Alt+Shift+9</code> (the modifier keys can be changed with the three drop-down lists in the settings window)</td></tr></tbody></table></div>
+<p>If a hotkey is taken by another program, ThumbDock tells you which ones could not be registered. When several ThumbDock instances run at once, only the one started first has hotkeys.</p>
+<h2 id="s13">10. Windows on other virtual desktops</h2>
+<p>Windows on other virtual desktops can be put into slots too, and their thumbnails update live just the same. There are two ways to handle a click, chosen in Settings:</p>
+<div class="table"><table><thead><tr><th>Option</th><th>Effect</th></tr></thead><tbody><tr><td>Switch to the desktop the window is on (switch)</td><td>Windows switches to that virtual desktop as a whole</td></tr><tr><td>Move the window to the current desktop (pull)</td><td>The desktop does not change; the window is brought over</td></tr></tbody></table></div>
+<p>pull uses undocumented Windows interfaces. On a Windows version it does not support, it falls back to switch automatically.</p>
+<h2 id="s14">11. Finding windows again, and launching programs at startup</h2>
+<h3 id="s15">11.1 Match rules</h3>
+<p>When a window is put into a slot, ThumbDock stores a &quot;match rule&quot; (process name, window class, title). After the window closes, the slot shows &quot;Waiting&quot;; when the same window appears again it is put back into its slot automatically. This also holds after a reboot.</p>
+<p>A rule can be changed with &quot;Edit match rule…&quot; in the slot&#x27;s right-click menu. An empty field means no restriction; the title field is a regular expression (Regex). When several windows match, the first one is bound.</p>
+<h3 id="s16">11.2 Launching programs at startup</h3>
+<p>Each layout can have a &quot;launch config&quot; that lists programs to open automatically and their slots. After ThumbDock starts, it opens them in order and puts the windows that appear into the given slots.</p>
+<ol><li>In Settings, tick &quot;Allow ThumbDock to launch programs from the launch config file at startup&quot; (off by default).</li><li>&quot;Select Windows&quot; → &quot;Run at startup&quot; → &quot;Edit launch config…&quot;, and fill in program path, arguments and slot in the form.</li><li>It takes effect the next time ThumbDock starts; you can also choose &quot;Start this layout&#x27;s programs now&quot; in the same menu.</li></ol>
+<p>A program is not opened again when its slot already has a window. For the file format see <a href="launch-config.en.md">launch-config.en.md</a>.</p>
+<h2 id="s17">12. Chrome thumbnails freeze or turn black</h2>
+<p>When a Chrome window is completely covered by other windows, or is on another virtual desktop, Chrome stops drawing by itself, so the thumbnail freezes or turns black. This is Chrome&#x27;s power-saving behaviour, not a ThumbDock problem.</p>
+<p>The fix is to start Chrome with either of these flags:</p>
+<pre><code>--disable-features=CalculateNativeWinOcclusion
+--disable-backgrounding-occluded-windows</code></pre>
+<p>Notes:</p>
+<ul><li>The flags only work on <strong>the first Chrome process that starts</strong>. Close every <code>chrome.exe</code> completely first (including the background process in the tray), then start Chrome with the flag.</li><li>To check: enter <code>chrome://version</code> in the Chrome address bar; the &quot;Command Line&quot; row must show the flag.</li><li>Edge accepts the same flags. They had no effect on Brave in our tests.</li><li>Turning this mechanism off makes Chrome use a little more CPU and power.</li></ul>
+<p><strong>Several Chrome accounts</strong>: to open one window per account you need the account&#x27;s profile folder name. Switch to that account and enter <code>chrome://version</code>; the last part of &quot;Profile Path&quot; (for example <code>Profile 4</code>) is the name, used as <code>--profile-directory=&quot;Profile 4&quot;</code>. A template is in <a href="launch-sample-chrome-9accounts.json">launch-sample-chrome-9accounts.json</a>.</p>
+<h2 id="s18">13. Layouts</h2>
+<p>A &quot;layout&quot; stores the position and size of the thumbnail area, and the position and match rule of every slot. You can keep different layouts for different kinds of work.</p>
+<p>In the &quot;Layout&quot; menu of &quot;Select Windows&quot;: switch layout, New blank layout, Save as new layout, Rename, Delete.</p>
+<ul><li><code>default</code> is a built-in fixed layout (docked left, 200 px wide, 8 slots in one column). Its area settings and slot positions cannot be changed, and it cannot be renamed or deleted. To customize, use &quot;Save as new layout&quot; first.</li><li>Tick &quot;When switching layouts, also get programs ready from that layout&#x27;s launch config&quot; in Settings to have the programs that the layout needs, and that are not open yet, started when you switch.</li></ul>
+<h2 id="s19">14. Language</h2>
+<p>&quot;Language&quot; at the bottom of the settings window selects the interface language; it takes effect after ThumbDock is restarted. &quot;Automatic&quot; follows the Windows language.</p>
+<ul><li>Built in: 繁體中文, English, 日本語, 简体中文.</li><li><strong>Japanese and Simplified Chinese are machine-translated first drafts</strong> that have not been reviewed by native speakers. Reports and corrections are welcome on the project page.</li><li>Adding or fixing a language does not need a rebuild: put a language file into <code>config\lang\</code> next to the exe and restart. See <a href="translating.en.md">translating.en.md</a>.</li><li>Right-to-left languages are not supported.</li></ul>
+<h2 id="s20">15. Command line and running several instances</h2>
+<div class="table"><table><thead><tr><th>Option</th><th>Meaning</th></tr></thead><tbody><tr><td><code>--layout &lt;name&gt;</code></td><td>Start with the given layout</td></tr><tr><td><code>--monitor &lt;number&gt;</code></td><td>Single-monitor mode with the thumbnail area on the given monitor (numbers are shown in the settings window)</td></tr><tr><td><code>--no-launch</code></td><td>Do not run the launch config this time</td></tr><tr><td><code>--safe</code></td><td>Safe start (see below)</td></tr><tr><td><code>--help</code></td><td>Show help</td></tr></tbody></table></div>
+<p><strong>Several instances</strong>: at most one ThumbDock per physical monitor, each using a different layout.</p>
+<pre><code>ThumbDock.exe --layout layoutname_1 --monitor 1
+ThumbDock.exe --layout layoutname_2 --monitor 2</code></pre>
+<p>A dual-monitor layout occupies all monitors; no second instance can be started while it runs.</p>
+<p><strong>Safe start</strong>: when a setting has gone wrong and the thumbnail area blocks the screen, start with <code>ThumbDock.exe --safe</code>. It ignores the last layout, uses the built-in <code>default</code> layout and does not launch any programs.</p>
+<h2 id="s21">16. Corporate environments and endpoint protection</h2>
+<p>ThumbDock works by enumerating all windows, querying the names and privileges of other programs, and bringing other programs&#x27; windows to the front or moving them. Some corporate endpoint protection products (EDR / XDR) may see this as suspicious behaviour and raise an alert or terminate the program.</p>
+<ul><li>The program does not connect to the network, does not read other programs&#x27; memory, and does not need administrator rights.</li><li>The only place it reads another program&#x27;s data: when Chrome or Edge is selected in the launch config form, it reads the browser&#x27;s profile list (account names) to fill the drop-down. If you do not use that form, nothing is read.</li><li>If it is blocked in a corporate environment, contact your information security administrator. <strong>Code signing usually does not help against this kind of behavioural detection</strong>; what works is for the administrator to add the SHA256 hash of that release file to the allow list. The hash of each version is listed on the release page.</li><li>A hash matches one file only. After updating, or after building from source yourself, the hash differs and a new request is needed.</li><li>&quot;Launch programs at startup&quot; is off by default for the same reason.</li></ul>
+<p>To check a file hash yourself (PowerShell):</p>
+<pre><code>Get-FileHash .\ThumbDock.exe -Algorithm SHA256</code></pre>
+<h2 id="s22">17. Known behaviour and limitations</h2>
+<div class="table"><table><thead><tr><th>Item</th><th>Description</th></tr></thead><tbody><tr><td>Maximize</td><td>A maximized window does not cover a docked thumbnail area</td></tr><tr><td>Full-screen programs</td><td>Full screen such as <code>F11</code> in a browser covers the thumbnail area (it gives way, like the taskbar)</td></tr><tr><td>Command Prompt <code>Alt+Enter</code></td><td>In full screen the thumbnail area stays on top of it</td></tr><tr><td>Administrator windows</td><td>For a window running as administrator, thumbnails and switching work, but ThumbDock cannot move or resize it. A blue shield is shown at the right end of the thumbnail title. To move it, start ThumbDock as administrator</td></tr><tr><td>Minimized windows</td><td>The thumbnail stops updating (a Windows limitation)</td></tr><tr><td>MobaTextEditor</td><td>The text editor built into MobaXterm hangs and closes when ThumbDock maximizes it. Do not put it into a slot set to &quot;Maximized&quot;</td></tr><tr><td>Microsoft Store apps</td><td>Not supported by &quot;Launch programs at startup&quot;</td></tr><tr><td>Hotkeys</td><td>With several instances, only the one started first has hotkeys</td></tr><tr><td>Other virtual desktops (switch)</td><td>The whole Windows desktop is switched, on all monitors together</td></tr></tbody></table></div>
+<h2 id="s23">18. File locations and troubleshooting</h2>
+<p>All files are in the folder that contains <code>ThumbDock.exe</code>:</p>
+<div class="table"><table><thead><tr><th>Path</th><th>Content</th></tr></thead><tbody><tr><td><code>config\settings.json</code></td><td>Global settings (hotkeys, last used layout and so on). With several instances, the others use <code>settings.DISPLAYn.json</code></td></tr><tr><td><code>config\language.txt</code></td><td>Interface language</td></tr><tr><td><code>config\layouts\</code></td><td>Layout files</td></tr><tr><td><code>config\launch\</code></td><td>Launch configs</td></tr><tr><td><code>config\lang\</code></td><td>Language files you add or override</td></tr><tr><td><code>logs\thumbdock.log</code></td><td>Log file; please attach it when reporting a problem</td></tr></tbody></table></div>
+<p>Common problems:</p>
+<div class="table"><table><thead><tr><th>Situation</th><th>What to do</th></tr></thead><tbody><tr><td>The thumbnail area is too large and blocks the screen</td><td>Exit the program and start it with <code>ThumbDock.exe --safe</code></td></tr><tr><td>A thumbnail is black or frozen</td><td>Chrome / Edge: see section 12; minimized window: see section 4</td></tr><tr><td>The window does not move after clicking its thumbnail</td><td>The window may be running as administrator (section 17)</td></tr><tr><td>After a reboot a slot shows &quot;Waiting&quot;</td><td>The program is not open yet, or its title changed. Loosen the rule with &quot;Edit match rule…&quot;</td></tr><tr><td>A program that minimizes to the system tray, such as LINE, shows &quot;Waiting&quot; in its slot</td><td>When such a program goes to the system tray its window is hidden, so there is no picture to show as a thumbnail. The slot is bound again automatically once the window is brought back from the tray. To keep the thumbnail live, turn off the program&#x27;s &quot;minimize to tray&quot; option and leave the window open (it may be covered by other windows, but do not minimize it)</td></tr><tr><td>The program is closed when &quot;Select Windows&quot; opens</td><td>It may have been blocked by endpoint protection (section 16)</td></tr><tr><td>Hotkeys do nothing</td><td>They are taken by another program, or this is not the first ThumbDock that was started</td></tr></tbody></table></div>
+<h2 id="s24">19. Removal</h2>
+<p>Exit ThumbDock and delete the whole folder. ThumbDock does not write to the registry and leaves no files anywhere else.</p>
+</main>
+</div>
+</body>
+</html>

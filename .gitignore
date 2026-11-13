@@ -14,6 +14,8 @@ logs/
 /backup-source/
 /20261107之前/
 /ethan-test/
+# Scratch page of random numbers used to eyeball live thumbnail updates; not part of the project
+/tools/random99.html
 *.bak
 *.old
 *.migrated

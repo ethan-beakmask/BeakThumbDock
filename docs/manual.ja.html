@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeakThumbDock 操作マニュアル</title>
+<style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d0d7de; --soft:#f6f8fa; --accent:#b35900; --link:#0969da; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#16181c; --fg:#e6e8eb; --muted:#9aa4af; --line:#30363d; --soft:#1f2329; --accent:#ffa028; --link:#6cb6ff; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.75;
+  font-family:"Segoe UI","Yu Gothic UI","Meiryo","Hiragino Sans","Noto Sans JP",sans-serif; }
+.page { display:grid; grid-template-columns:260px minmax(0,1fr); gap:40px; max-width:1180px; margin:0 auto; padding:32px 24px 80px; }
+nav { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; font-size:14px; }
+nav .title { font-weight:600; color:var(--muted); margin-bottom:8px; }
+nav a { display:block; padding:3px 0 3px 10px; border-left:2px solid var(--line); color:var(--fg); text-decoration:none; }
+nav a:hover { border-left-color:var(--accent); color:var(--accent); }
+main { min-width:0; }
+h1 { font-size:30px; margin:0 0 8px; }
+h2 { font-size:22px; margin:44px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+h3 { font-size:17px; margin:28px 0 8px; }
+p, ul, ol { margin:10px 0; }
+li { margin:4px 0; }
+a { color:var(--link); }
+code { font-family:Consolas,"Cascadia Mono",monospace; font-size:.92em; background:var(--soft); border:1px solid var(--line); border-radius:4px; padding:1px 5px; }
+pre { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:12px 14px; overflow-x:auto; }
+pre code { background:none; border:0; padding:0; }
+.table { overflow-x:auto; margin:12px 0; }
+table { border-collapse:collapse; width:100%; font-size:15px; }
+th, td { border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top; }
+th { background:var(--soft); white-space:nowrap; }
+strong { color:var(--accent); }
+@media (max-width: 820px) {
+  .page { grid-template-columns:1fr; gap:8px; padding:20px 16px 60px; }
+  nav { position:static; max-height:none; border-bottom:1px solid var(--line); padding-bottom:12px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<nav><div class="title">目次</div><a href="#s1">1. 動作環境と入手</a><a href="#s2">2. 初回起動</a><a href="#s3">3. ウィンドウをスロットに入れる</a><a href="#s4">4. サムネイルを使う</a><a href="#s5">5. 設定ウィンドウ</a><a href="#s9">6. サムネイルウォール（全画面）</a><a href="#s10">7. 2 画面</a><a href="#s11">8. スロット位置を編集する</a><a href="#s12">9. ホットキー</a><a href="#s13">10. 他の仮想デスクトップのウィンドウ</a><a href="#s14">11. ウィンドウの自動再割り当てと起動時のプログラム起動</a><a href="#s17">12. Chrome のサムネイルが止まる・黒くなる</a><a href="#s18">13. レイアウト</a><a href="#s19">14. 言語</a><a href="#s20">15. コマンドライン引数と複数同時起動</a><a href="#s21">16. 企業環境とエンドポイント保護ソフトウェア</a><a href="#s22">17. 既知の動作と制限</a><a href="#s23">18. ファイルの場所とトラブルシューティング</a><a href="#s24">19. 削除</a></nav>
+<main>
+<h1>BeakThumbDock 操作マニュアル</h1>
+<p>対象バージョン：0.11.6</p>
+<p>BeakThumbDock（プログラム名と実行ファイル名は ThumbDock）は、Windows 用のインストール不要のツールです。複数のウィンドウ（他の仮想デスクトップ上のウィンドウを含む）をライブサムネイルにして、画面の端にある「サムネイル領域」に並べます。サムネイルをクリックするとそのウィンドウが前面に出ます。サムネイルは常に画面に残るため、複数のウィンドウを同時に監視したり、多数のウィンドウをすばやく切り替えたりするのに向いています。</p>
+<p>このマニュアルは機械翻訳をもとにした初稿で、ネイティブによる確認を受けていません。</p>
+<p>他の言語：<a href="manual.html">繁體中文</a> | <a href="manual.en.html">English</a></p>
+<h2 id="s1">1. 動作環境と入手</h2>
+<ul><li>Windows 11（開発とテストは Windows 11 で行っています。Windows 10 では未確認です）。</li><li>インストールも管理者権限も不要です。</li></ul>
+<p>配布ファイルは 2 種類あり、機能は同じです。</p>
+<div class="table"><table><thead><tr><th>種類</th><th>ファイル</th><th>別途必要なもの</th></tr></thead><tbody><tr><td>ランタイム同梱（推奨）</td><td><code>ThumbDock.exe</code> 1 つ、約 50 MB</td><td>なし</td></tr><tr><td>ランタイムなし</td><td><code>ThumbDock.exe</code> と小さなファイル数個、1 MB 未満</td><td>.NET 10 Desktop Runtime</td></tr></tbody></table></div>
+<p>ファイルは<strong>自分に書き込み権限のあるフォルダー</strong>（例：<code>D:\Tools\ThumbDock</code>）に置いて実行してください。設定ファイルとログは exe と同じ場所に保存されるため、<code>C:\Program Files</code> のように書き込みに管理者権限が必要な場所には置かないでください。</p>
+<h2 id="s2">2. 初回起動</h2>
+<ol><li><code>ThumbDock.exe</code> を実行します。画面の左側にサムネイル領域が現れ、空のスロットが 8 個、「待機中　クリックしてウィンドウを選択」と表示されます。</li><li>初回起動時は Chrome に関するヒントが表示されます（12 章参照）。読んだら「了解」を押します。今後表示したくない場合は「今後表示しない」にチェックを付けます。</li><li>タスクバー右下の通知領域（タスクトレイ）に、白地に黒い丸のアイコンが追加されます。</li></ol>
+<p>タスクトレイアイコン：</p>
+<div class="table"><table><thead><tr><th>操作</th><th>結果</th></tr></thead><tbody><tr><td>ダブルクリック</td><td>「ウィンドウ選択」を開く</td></tr><tr><td>右クリック</td><td>メニュー：ウィンドウ選択…、設定…、終了</td></tr></tbody></table></div>
+<p>ThumbDock を終了するには、タスクトレイの右クリックメニューの「終了」を使います。</p>
+<h2 id="s3">3. ウィンドウをスロットに入れる</h2>
+<p>「ウィンドウ選択」の開き方：空のスロットをクリックする、タスクトレイアイコンをダブルクリックする、またはサムネイル領域を右クリックして「ウィンドウ選択…」を選びます。</p>
+<p>「ウィンドウ選択」には現在のすべてのウィンドウが 1 行に 1 つずつ表示されます。左側の各列が 1 つのスロットに対応します（列見出しがスロット番号です）。</p>
+<ul><li><strong>スロットに入れる</strong>：そのウィンドウの行で、入れたいスロットの列にチェックを付けます。</li><li><strong>取り消す</strong>：同じセルをもう一度クリックします。</li><li><strong>十字ガイド</strong>：マウスをチェック欄に重ねると、その行と列の色が変わり、交差するセルが濃く表示されます。ウィンドウやスロットが多いときの確認に便利です。</li><li>一覧は自動的に更新されます。開き直す必要はありません。</li></ul>
+<p>その他の列：</p>
+<div class="table"><table><thead><tr><th>列</th><th>説明</th></tr></thead><tbody><tr><td>サムネイルクリック時</td><td>クリックで切り替え：変更なし → 最大化 → 作業領域に合わせる。サムネイルをクリックした後のウィンドウの配置を決めます</td></tr><tr><td>元の位置</td><td>ウィンドウをスロットに入れたときに記録した位置</td></tr><tr><td>仮想デスクトップ</td><td>ウィンドウが現在のデスクトップにあるか、他のデスクトップにあるか</td></tr><tr><td>権限</td><td>「管理者（移動不可）」は、そのウィンドウが管理者として実行されていることを示します（17 章参照）</td></tr></tbody></table></div>
+<p>「サムネイルクリック時」の 3 つの方式：</p>
+<div class="table"><table><thead><tr><th>方式</th><th>動作</th></tr></thead><tbody><tr><td>変更なし</td><td>ウィンドウを前面に出すだけで、位置とサイズは変えません</td></tr><tr><td>最大化</td><td>ウィンドウを最大化します（ドッキングしたサムネイル領域は覆いません）</td></tr><tr><td>作業領域に合わせる</td><td>最大化せず、ウィンドウを「画面からサムネイル領域を除いた範囲」のサイズにします</td></tr></tbody></table></div>
+<p>「ウィンドウ選択」上部のメニュー：レイアウト、設定…、表示、起動時に実行。</p>
+<h2 id="s4">4. サムネイルを使う</h2>
+<div class="table"><table><thead><tr><th>操作</th><th>結果</th></tr></thead><tbody><tr><td>サムネイルをクリック</td><td>そのウィンドウを前面に出し、「サムネイルクリック時」の設定どおりに配置します</td></tr><tr><td>サムネイルを別のサムネイルにドラッグして離す</td><td>2 つのサムネイルの位置が入れ替わります（番号とホットキーは位置に従います）</td></tr><tr><td>サムネイルを右クリック</td><td>ウィンドウ選択…、一致ルールを編集…、スロットをクリア、スロット位置を編集…</td></tr><tr><td>サムネイル領域の空いた部分を右クリック</td><td>スロット位置を編集…、ウィンドウ選択…、設定…</td></tr></tbody></table></div>
+<p>現在最前面にあるウィンドウのサムネイルは、枠がオレンジ色になります。</p>
+<p>ソースウィンドウが最小化されると、サムネイルの更新が止まります（Windows の制限です）。スロットには「最小化中・サムネイル停止（クリックで復元）」と表示されます。設定で「ソースウィンドウが最小化されたら自動的に最背面へ復元」にチェックを付けると、他のウィンドウを覆わずに自動で復元されます。</p>
+<h2 id="s5">5. 設定ウィンドウ</h2>
+<p>タスクトレイの右クリックメニューの「設定…」、または「ウィンドウ選択」の「設定…」から開きます。設定ウィンドウは「ウィンドウ選択」と同時に開いておけます。「OK」を押すと適用されます。設定ウィンドウを開いている間は、レイアウトの切り替えや管理、スロット位置の編集はできません。</p>
+<h3 id="s6">5.1 サムネイル領域の位置</h3>
+<div class="table"><table><thead><tr><th>選択肢</th><th>説明</th></tr></thead><tbody><tr><td>左／右／上／下（ドッキング）</td><td>タスクバーのように画面の一辺を占有します。他のウィンドウを最大化しても覆われません</td></tr><tr><td>全画面（サムネイルウォール）</td><td>サムネイルが画面全体を覆います（6 章参照）</td></tr></tbody></table></div>
+<ul><li><strong>幅／高さ</strong>：ドッキング時のサムネイル領域の厚みです。単位は 100% スケール時のピクセルで、画面の拡大率が大きいとそれに合わせて大きくなります。上限は画面のその方向の 70% です。</li><li><strong>各スロットの下にウィンドウタイトルを表示</strong>：オフにするとサムネイルが少し大きくなります。</li></ul>
+<h3 id="s7">5.2 列 × 行</h3>
+<p>スロットの数は「列数 × 行数」で決まり、最大 100 個です。サムネイルは同じサイズ・同じ間隔で、そろえて格子状に並びます。</p>
+<ul><li>ドッキングしたサムネイル領域は細いため、1 列 × 8 行や 2 列 × 8 行がよく使われます。</li><li>間隔を設定できます。「サムネイルのサイズを固定」にチェックを付けると、各セルの幅と高さを指定できます（収まらないときは比率を保って縮小されます）。</li><li>並べ直しが行われるのは、ここの設定（またはサムネイル領域の位置やサイズ）を変えたときだけです。手動で調整した位置が通常の操作で上書きされることはありません。</li><li>スロットが 24 個以上になると、先に警告が表示されます。画面の更新と操作が目に見えて遅くなります。</li><li><strong>スロットを増やす</strong>：新しいスロットは空いた場所に置かれ、既存のスロットは動きません。</li><li><strong>スロットを減らす</strong>：割り当てのないスロットだけが削除されます。足りない場合は、先にスロットを右クリックして「スロットをクリア」を選ぶか、「すべて割り当て解除して再配置」にチェックを付けます。</li></ul>
+<h3 id="s8">5.3 その他の設定</h3>
+<ul><li><strong>モード</strong>：1 画面または 2 画面（7 章参照）。</li><li><strong>他の仮想デスクトップのウィンドウ</strong>：10 章参照。</li><li><strong>ホットキー</strong>：9 章参照。</li><li><strong>起動時のプログラム起動</strong>：11 章参照。</li><li><strong>言語</strong>：14 章参照。</li></ul>
+<h2 id="s9">6. サムネイルウォール（全画面）</h2>
+<p>1 画面モードでサムネイル領域の位置を「全画面」にすると、サムネイルが画面全体を覆う「サムネイルウォール」になります。</p>
+<ul><li>サムネイルをクリック：そのウィンドウがウォールの上に表示されます。</li><li>ウォールに戻る：「サムネイル領域の表示／非表示」のホットキー（既定は <code>Ctrl+Alt+D</code>）を押します。ウォールがすでに最前面にあるときにもう一度押すと、直前のウィンドウに戻ります。</li><li>設定の「サムネイルウォールに戻るとき、ウォール上で最大化したウィンドウを元のサイズと位置に戻す」は、チェックを付けたままにすることをおすすめします。隠れたブラウザーの更新停止を防げます。</li><li><strong>マウスでウォールに戻る</strong>（既定はオフ）：設定でチェックを付けると、マウスを画面左端の中央に約 0.4 秒置くだけでウォールに戻ります。ウィンドウのドラッグ中は反応しません。1 画面のウォールでのみ有効です。</li></ul>
+<h2 id="s10">7. 2 画面</h2>
+<p>設定でモードを「2 画面」にして、次を指定します。</p>
+<ul><li><strong>サムネイル画面</strong>：サムネイル領域を置く画面。</li><li><strong>フォーカス画面</strong>：実際にウィンドウを操作する画面。2 つは別の画面でなければなりません。</li></ul>
+<p>サムネイルをクリックすると、<strong>もともとサムネイル画面にあったウィンドウ</strong>はフォーカス画面に移動します。他の画面にあったウィンドウは元の場所のまま、前面に出るだけです。</p>
+<p>2 画面モードで「全画面」を選ぶと、サムネイルはサムネイル画面だけを覆います。どちらかの画面が取り外された場合、ThumbDock は一時的に 1 画面モードに切り替わり、画面が戻ると自動的に元に戻ります。</p>
+<h2 id="s11">8. スロット位置を編集する</h2>
+<p>サムネイル領域を右クリックして「スロット位置を編集…」を選ぶと編集モードに入り、スロットの枠が青い破線になります。組み込みの <code>default</code> レイアウトは編集できません。先に「新しいレイアウトとして保存」を行ってください。</p>
+<div class="table"><table><thead><tr><th>操作</th><th>結果</th></tr></thead><tbody><tr><td>スロットをドラッグ</td><td>移動</td></tr><tr><td>スロットの右端、下端、または右下の角をドラッグ</td><td>サイズ変更</td></tr><tr><td>他のスロットやサムネイル領域の端に近づける</td><td>端が自動的に吸着してそろいます（同じ行、同じ列、間隔を空けて隣接、同じ幅・高さ）</td></tr><tr><td><code>Alt</code> を押しながらドラッグ</td><td>吸着せず、1 ピクセル単位で移動</td></tr><tr><td>スロットをクリック</td><td>選択（枠が太い実線になります）</td></tr><tr><td>選択して <code>Del</code> を押す</td><td>そのスロットを削除（確認は出ません）</td></tr><tr><td>スロットを右クリック →「このスロットを削除」</td><td>同上</td></tr><tr><td>空いた場所を右クリック →「ここにスロットを追加」</td><td>スロットを追加</td></tr></tbody></table></div>
+<p>編集が終わったら、右クリックメニューの「編集を終了」を選びます。ウィンドウが割り当てられたスロットを削除すると、その一致ルールも一緒に削除されます。</p>
+<h2 id="s12">9. ホットキー</h2>
+<p>設定ウィンドウの「ホットキー」の欄で変更します。すべてのレイアウトで共通です。</p>
+<div class="table"><table><thead><tr><th>機能</th><th>既定</th></tr></thead><tbody><tr><td>サムネイル領域の表示／非表示（ウォールではウォールに戻る）</td><td><code>Ctrl+Alt+D</code></td></tr><tr><td>スロット 1–9 に切り替え</td><td><code>Alt+Shift+1</code> ～ <code>Alt+Shift+9</code>（修飾キーは設定ウィンドウの 3 つのドロップダウンで変更できます）</td></tr></tbody></table></div>
+<p>ホットキーが他のプログラムに使われている場合、ThumbDock は登録できなかったものを通知します。ThumbDock を複数同時に起動している場合、ホットキーが使えるのは最初に起動した 1 つだけです。</p>
+<h2 id="s13">10. 他の仮想デスクトップのウィンドウ</h2>
+<p>他の仮想デスクトップにあるウィンドウも同じようにスロットに入れられ、サムネイルも同じようにリアルタイムで更新されます。サムネイルをクリックしたときの動作は 2 通りあり、設定で選びます。</p>
+<div class="table"><table><thead><tr><th>選択肢</th><th>動作</th></tr></thead><tbody><tr><td>ウィンドウのあるデスクトップに切り替え（switch）</td><td>Windows 全体がその仮想デスクトップに切り替わります</td></tr><tr><td>ウィンドウを現在のデスクトップに移動（pull）</td><td>デスクトップは切り替えず、ウィンドウを持ってきます</td></tr></tbody></table></div>
+<p>pull は Windows の非公開インターフェイスを使います。対応していない Windows バージョンでは、自動的に switch に切り替わります。</p>
+<h2 id="s14">11. ウィンドウの自動再割り当てと起動時のプログラム起動</h2>
+<h3 id="s15">11.1 一致ルール</h3>
+<p>ウィンドウをスロットに入れると、ThumbDock は「一致ルール」（プロセス名、ウィンドウクラス、タイトル）を記録します。ウィンドウが閉じられるとスロットは「待機中」と表示され、同じウィンドウが再び現れると自動的に元のスロットに戻ります。再起動後も同じです。</p>
+<p>ルールは、スロットの右クリックメニューの「一致ルールを編集…」で変更できます。空欄は制限なしを意味し、タイトル欄には正規表現（Regex）を使います。一致するウィンドウが複数ある場合は、最初のものを割り当てます。</p>
+<h3 id="s16">11.2 起動時のプログラム起動</h3>
+<p>レイアウトごとに「起動設定ファイル」を 1 つ持つことができ、自動的に開くプログラムと対応するスロットを記述します。ThumbDock は起動後にそれらを順番に開き、現れたウィンドウを指定のスロットに入れます。</p>
+<ol><li>設定で「起動時に ThumbDock が起動設定ファイルのプログラムを起動することを許可」にチェックを付けます（既定はオフ）。</li><li>「ウィンドウ選択」→「起動時に実行」→「起動設定ファイルを編集…」を開き、フォームでプログラムのパス、引数、スロットを入力します。</li><li>次回 ThumbDock を起動したときに有効になります。同じメニューの「このレイアウトのプログラムを今すぐ起動」でも実行できます。</li></ol>
+<p>スロットにすでにウィンドウがある場合、重複して開くことはありません。ファイル形式の詳細は <a href="launch-config.ja.md">launch-config.ja.md</a> を参照してください。</p>
+<h2 id="s17">12. Chrome のサムネイルが止まる・黒くなる</h2>
+<p>Chrome のウィンドウが他のウィンドウに完全に隠れているとき、または他の仮想デスクトップにあるとき、Chrome は自分で描画を止めます。そのためサムネイルが止まったり黒くなったりします。これは Chrome の省電力の仕組みで、ThumbDock の問題ではありません。</p>
+<p>対処法は、次のどちらかのフラグを付けて Chrome を起動することです。</p>
+<pre><code>--disable-features=CalculateNativeWinOcclusion
+--disable-backgrounding-occluded-windows</code></pre>
+<p>注意：</p>
+<ul><li>フラグは<strong>最初に起動した Chrome プロセス</strong>にしか効きません。先にすべての <code>chrome.exe</code>（タスクトレイのバックグラウンドプロセスを含む）を完全に終了してから、フラグを付けて起動してください。</li><li>確認方法：Chrome のアドレスバーに <code>chrome://version</code> と入力し、「コマンドライン」の行にフラグが表示されていることを確認します。</li><li>Edge でも同じフラグが使えます。Brave ではテストで効果がありませんでした。</li><li>この仕組みを無効にすると、Chrome の CPU と電力の消費が少し増えます。</li></ul>
+<p><strong>複数の Chrome アカウント</strong>：アカウントごとにウィンドウを開くには、アカウントのプロファイルフォルダー名が必要です。そのアカウントに切り替えてアドレスバーに <code>chrome://version</code> と入力すると、「プロフィール パス」の最後の部分（例：<code>Profile 4</code>）が名前です。起動フラグ <code>--profile-directory=&quot;Profile 4&quot;</code> に指定します。ひな形は <a href="launch-sample-chrome-9accounts.json">launch-sample-chrome-9accounts.json</a> にあります。</p>
+<h2 id="s18">13. レイアウト</h2>
+<p>「レイアウト」は、サムネイル領域の位置とサイズ、各スロットの位置と一致ルールを記録します。作業の場面ごとに別のレイアウトを用意できます。</p>
+<p>「ウィンドウ選択」の「レイアウト」メニュー：レイアウトの切り替え、空のレイアウトを新規作成、新しいレイアウトとして保存、名前を変更、削除。</p>
+<ul><li><code>default</code> は組み込みの固定レイアウト（左にドッキング、幅 200px、スロット 8 個を 1 列）です。領域の設定の変更、スロット位置の編集、名前の変更、削除はできません。カスタマイズするには、先に「新しいレイアウトとして保存」を行ってください。</li><li>設定で「レイアウト切り替え時に、そのレイアウトの起動設定ファイルでプログラムも準備する」にチェックを付けると、レイアウトを切り替えたときに、そのレイアウトに必要でまだ開いていないプログラムが自動的に開かれます。</li></ul>
+<h2 id="s19">14. 言語</h2>
+<p>設定ウィンドウの一番下の「言語」で表示言語を選べます。ThumbDock を再起動すると反映されます。「自動」を選ぶと Windows の言語に従います。</p>
+<ul><li>組み込み：繁體中文、English、日本語、简体中文。</li><li><strong>日本語と簡体字中国語は機械翻訳の初稿</strong>で、ネイティブによる確認を受けていません。不自然な箇所や誤りを見つけたら、プロジェクトページでの報告や修正の提出を歓迎します。</li><li>言語の追加や修正にプログラムの再ビルドは不要です。言語ファイルを exe の隣の <code>config\lang\</code> に置いて再起動するだけです。方法は <a href="translating.ja.md">translating.ja.md</a> を参照してください。</li><li>右から左に書く言語には対応していません。</li></ul>
+<h2 id="s20">15. コマンドライン引数と複数同時起動</h2>
+<div class="table"><table><thead><tr><th>引数</th><th>説明</th></tr></thead><tbody><tr><td><code>--layout &lt;名前&gt;</code></td><td>指定したレイアウトで起動</td></tr><tr><td><code>--monitor &lt;番号&gt;</code></td><td>1 画面モードで、サムネイル領域を指定した画面に置く（番号は設定ウィンドウで確認できます）</td></tr><tr><td><code>--no-launch</code></td><td>今回は起動設定ファイルを実行しない</td></tr><tr><td><code>--safe</code></td><td>セーフスタート（下記参照）</td></tr><tr><td><code>--help</code></td><td>ヘルプを表示</td></tr></tbody></table></div>
+<p><strong>複数同時起動</strong>：物理画面 1 つにつき ThumbDock は 1 つまでで、それぞれ別のレイアウトを使う必要があります。</p>
+<pre><code>ThumbDock.exe --layout layoutname_1 --monitor 1
+ThumbDock.exe --layout layoutname_2 --monitor 2</code></pre>
+<p>2 画面モードのレイアウトはすべての画面を占有するため、実行中は 2 つ目を起動できません。</p>
+<p><strong>セーフスタート</strong>：設定を誤ってサムネイル領域が画面をふさぎ、操作できなくなったときは、<code>ThumbDock.exe --safe</code> で起動します。前回のレイアウトを無視して組み込みの <code>default</code> レイアウトを使い、プログラムの起動も行いません。</p>
+<h2 id="s21">16. 企業環境とエンドポイント保護ソフトウェア</h2>
+<p>ThumbDock は、すべてのウィンドウを列挙し、他のプログラムの名前と権限を問い合わせ、他のプログラムのウィンドウを前面に出したり移動したりします。これらの動作は、一部の企業のエンドポイント保護ソフトウェア（EDR／XDR）からは不審な動作に見えることがあり、警告されたり終了させられたりする場合があります。</p>
+<ul><li>プログラムはネットワークに接続せず、他のプログラムのメモリを読み取らず、管理者権限も必要としません。</li><li>他のプログラムのデータを読み取る唯一の箇所：起動設定ファイルの編集フォームで Chrome／Edge を選んだとき、ドロップダウンに表示するためにブラウザーのプロファイル一覧（アカウント名）を読み取ります。このフォームを使わなければ読み取りません。</li><li>企業環境でブロックされた場合は、情報セキュリティの管理者に連絡してください。<strong>この種の動作検知には、コード署名は通常役に立ちません</strong>。有効なのは、管理者がそのバージョンの配布ファイルの SHA256 ハッシュを許可リストに追加することです。各バージョンのハッシュはリリースページに記載しています。</li><li>ハッシュは 1 つのファイルにしか対応しません。バージョンを更新したり、ソースから自分でビルドしたりするとハッシュが変わるため、改めて申請が必要です。</li><li>「起動時のプログラム起動」が既定でオフなのも、同じ理由によるものです。</li></ul>
+<p>ファイルのハッシュを自分で確認する方法（PowerShell）：</p>
+<pre><code>Get-FileHash .\ThumbDock.exe -Algorithm SHA256</code></pre>
+<h2 id="s22">17. 既知の動作と制限</h2>
+<div class="table"><table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody><tr><td>最大化</td><td>ウィンドウを最大化しても、ドッキングしたサムネイル領域は覆われません</td></tr><tr><td>全画面プログラム</td><td>ブラウザーの <code>F11</code> のような全画面表示はサムネイル領域を覆います（タスクバーと同じく、サムネイル領域が譲ります）</td></tr><tr><td>コマンド プロンプトの <code>Alt+Enter</code></td><td>全画面でもサムネイル領域がその上に表示されます</td></tr><tr><td>管理者ウィンドウ</td><td>管理者として実行されているウィンドウは、サムネイルと切り替えは正常ですが、ThumbDock から移動やサイズ変更はできません。サムネイルのタイトル行の右端に青い盾が表示されます。移動するには、ThumbDock を管理者として起動してください</td></tr><tr><td>最小化されたウィンドウ</td><td>サムネイルの更新が止まります（Windows の制限）</td></tr><tr><td>MobaTextEditor</td><td>MobaXterm 内蔵のテキストエディターは、ThumbDock が最大化すると固まって閉じます。「最大化」に設定したスロットには入れないでください</td></tr><tr><td>Microsoft Store アプリ</td><td>「起動時のプログラム起動」は対応していません</td></tr><tr><td>ホットキー</td><td>複数同時起動時、ホットキーが使えるのは最初に起動した 1 つだけです</td></tr><tr><td>他の仮想デスクトップ（switch）</td><td>Windows 全体のデスクトップが切り替わり、すべての画面が一緒に切り替わります</td></tr></tbody></table></div>
+<h2 id="s23">18. ファイルの場所とトラブルシューティング</h2>
+<p>すべてのファイルは <code>ThumbDock.exe</code> のあるフォルダーにあります。</p>
+<div class="table"><table><thead><tr><th>パス</th><th>内容</th></tr></thead><tbody><tr><td><code>config\settings.json</code></td><td>全体設定（ホットキー、前回使ったレイアウトなど）。複数同時起動時、他のインスタンスは <code>settings.DISPLAYn.json</code> を使います</td></tr><tr><td><code>config\language.txt</code></td><td>表示言語</td></tr><tr><td><code>config\layouts\</code></td><td>レイアウトファイル</td></tr><tr><td><code>config\launch\</code></td><td>起動設定ファイル</td></tr><tr><td><code>config\lang\</code></td><td>自分で追加または上書きする言語ファイル</td></tr><tr><td><code>logs\thumbdock.log</code></td><td>ログファイル。問題を報告するときに添付してください</td></tr></tbody></table></div>
+<p>よくある問題：</p>
+<div class="table"><table><thead><tr><th>状況</th><th>対処</th></tr></thead><tbody><tr><td>サムネイル領域が大きすぎて画面をふさぎ、操作できない</td><td>プログラムを終了して <code>ThumbDock.exe --safe</code> で起動する</td></tr><tr><td>サムネイルが黒い、または止まっている</td><td>Chrome／Edge は 12 章、最小化されたウィンドウは 4 章を参照</td></tr><tr><td>サムネイルをクリックしてもウィンドウが動かない</td><td>そのウィンドウが管理者として実行されている可能性があります（17 章）</td></tr><tr><td>再起動後にスロットが「待機中」のまま</td><td>プログラムがまだ開いていないか、タイトルが変わっています。「一致ルールを編集…」でルールを緩めてください</td></tr><tr><td>LINE のようにシステムトレイに格納されるプログラムで、スロットが「待機中」になる</td><td>この種のプログラムはシステムトレイに格納されるとウィンドウが非表示になり、サムネイルとして表示できる画面がありません。トレイからウィンドウを呼び戻すと自動的に再び割り当てられます。サムネイルをリアルタイムに保つには、そのプログラムの「トレイに格納」オプションをオフにし、ウィンドウを開いたままにしてください（他のウィンドウに隠れてもかまいませんが、最小化はしないでください）</td></tr><tr><td>「ウィンドウ選択」を開くとプログラムが閉じられる</td><td>エンドポイント保護ソフトウェアにブロックされた可能性があります（16 章）</td></tr><tr><td>ホットキーが効かない</td><td>他のプログラムに使われているか、最初に起動した ThumbDock ではありません</td></tr></tbody></table></div>
+<h2 id="s24">19. 削除</h2>
+<p>ThumbDock を終了してから、フォルダーごと削除してください。ThumbDock はレジストリに書き込まず、他の場所にファイルを残しません。</p>
+</main>
+</div>
+</body>
+</html>
