@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThumbDock 操作手冊</title>
+<style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d0d7de; --soft:#f6f8fa; --accent:#b35900; --link:#0969da; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#16181c; --fg:#e6e8eb; --muted:#9aa4af; --line:#30363d; --soft:#1f2329; --accent:#ffa028; --link:#6cb6ff; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.75;
+  font-family:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif; }
+.page { display:grid; grid-template-columns:260px minmax(0,1fr); gap:40px; max-width:1180px; margin:0 auto; padding:32px 24px 80px; }
+nav { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; font-size:14px; }
+nav .title { font-weight:600; color:var(--muted); margin-bottom:8px; }
+nav a { display:block; padding:3px 0 3px 10px; border-left:2px solid var(--line); color:var(--fg); text-decoration:none; }
+nav a:hover { border-left-color:var(--accent); color:var(--accent); }
+main { min-width:0; }
+h1 { font-size:30px; margin:0 0 8px; }
+h2 { font-size:22px; margin:44px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+h3 { font-size:17px; margin:28px 0 8px; }
+p, ul, ol { margin:10px 0; }
+li { margin:4px 0; }
+a { color:var(--link); }
+code { font-family:Consolas,"Cascadia Mono",monospace; font-size:.92em; background:var(--soft); border:1px solid var(--line); border-radius:4px; padding:1px 5px; }
+pre { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:12px 14px; overflow-x:auto; }
+pre code { background:none; border:0; padding:0; }
+.table { overflow-x:auto; margin:12px 0; }
+table { border-collapse:collapse; width:100%; font-size:15px; }
+th, td { border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top; }
+th { background:var(--soft); white-space:nowrap; }
+strong { color:var(--accent); }
+@media (max-width: 820px) {
+  .page { grid-template-columns:1fr; gap:8px; padding:20px 16px 60px; }
+  nav { position:static; max-height:none; border-bottom:1px solid var(--line); padding-bottom:12px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<nav><div class="title">目錄</div><a href="#s1">1. 系統需求與取得</a><a href="#s2">2. 第一次啟動</a><a href="#s3">3. 把視窗放進槽位</a><a href="#s4">4. 使用縮圖</a><a href="#s5">5. 設定視窗</a><a href="#s9">6. 縮圖牆（全螢幕）</a><a href="#s10">7. 雙螢幕</a><a href="#s11">8. 編輯槽位位置</a><a href="#s12">9. 快速鍵</a><a href="#s13">10. 其他虛擬桌面的視窗</a><a href="#s14">11. 自動找回視窗與啟動時呼叫程式</a><a href="#s17">12. Chrome 縮圖停格或變黑</a><a href="#s18">13. 佈局</a><a href="#s19">14. 語言</a><a href="#s20">15. 命令列參數與同時開多個</a><a href="#s21">16. 公司環境與端點防護軟體</a><a href="#s22">17. 已知行為與限制</a><a href="#s23">18. 檔案位置與疑難排解</a><a href="#s24">19. 移除</a></nav>
+<main>
+<h1>ThumbDock 操作手冊</h1>
+<p>適用版本：0.11.6</p>
+<p>ThumbDock 是 Windows 的免安裝小工具。它把多個視窗（包含其他虛擬桌面上的視窗）變成即時縮圖，排在螢幕邊緣的「縮圖區」。點一下縮圖，該視窗就會被帶到前面；縮圖會一直留在畫面上，適合同時監看多個視窗，或在很多視窗之間快速切換。</p>
+<h2 id="s1">1. 系統需求與取得</h2>
+<ul><li>Windows 11（開發與測試都在 Windows 11 進行；Windows 10 沒有測試過）。</li><li>不需要安裝，也不需要系統管理員權限。</li></ul>
+<p>發行檔有兩種，功能完全相同：</p>
+<div class="table"><table><thead><tr><th>版本</th><th>檔案</th><th>需要另外安裝</th></tr></thead><tbody><tr><td>內建執行環境（建議）</td><td>單一個 <code>ThumbDock.exe</code>，約 50 MB</td><td>不需要</td></tr><tr><td>不內建執行環境</td><td><code>ThumbDock.exe</code> 加幾個小檔，不到 1 MB</td><td>.NET 10 Desktop Runtime</td></tr></tbody></table></div>
+<p>把檔案放進一個<strong>自己有寫入權限的資料夾</strong>（例如 <code>D:\Tools\ThumbDock</code>）再執行。設定檔與記錄檔都放在 exe 旁邊，所以不要放在 <code>C:\Program Files</code> 這類需要管理員權限才能寫入的位置。</p>
+<h2 id="s2">2. 第一次啟動</h2>
+<ol><li>執行 <code>ThumbDock.exe</code>。螢幕左邊會出現一條縮圖區，裡面有 8 個空的槽位，顯示「等待中　點一下選擇視窗」。</li><li>第一次啟動會跳出 Chrome 的使用提醒（見第 12 節）。看完按「知道了」；不想再看到就勾「以後不顯示」。</li><li>工作列右下角的系統匣會多一個白底黑圓的圖示。</li></ol>
+<p>系統匣圖示：</p>
+<div class="table"><table><thead><tr><th>操作</th><th>結果</th></tr></thead><tbody><tr><td>點兩下</td><td>開啟「選擇視窗」</td></tr><tr><td>右鍵</td><td>選單：選擇視窗、設定…、結束</td></tr></tbody></table></div>
+<p>要結束 ThumbDock，請用系統匣右鍵的「結束」。</p>
+<h2 id="s3">3. 把視窗放進槽位</h2>
+<p>開啟「選擇視窗」的方法：點任何一個空的槽位、在系統匣圖示點兩下，或在縮圖區按右鍵選「選擇視窗…」。</p>
+<p>「選擇視窗」列出目前所有視窗，一列一個。左邊每一欄代表一個槽位（欄位標題就是槽位編號）。</p>
+<ul><li><strong>放進槽位</strong>：在該視窗那一列、想要的槽位那一欄勾選。</li><li><strong>取消</strong>：再點一次同一格。</li><li><strong>十字輔助線</strong>：滑鼠移到勾選格上時，那一列與那一欄會變色，交叉的那一格顏色較深，方便在視窗和槽位很多時確認沒有勾錯。</li><li>清單會自動更新，不需要重新開啟。</li></ul>
+<p>其他欄位：</p>
+<div class="table"><table><thead><tr><th>欄位</th><th>說明</th></tr></thead><tbody><tr><td>點縮圖時</td><td>點一下切換：不變 → 最大化 → 填滿操作區。決定點縮圖後該視窗要怎麼擺</td></tr><tr><td>原位置</td><td>視窗被放進槽位時記錄的位置</td></tr><tr><td>虛擬桌面</td><td>視窗在目前桌面或其他桌面</td></tr><tr><td>權限</td><td>顯示「管理員（無法移動）」代表該視窗以系統管理員身分執行（見第 15 節）</td></tr></tbody></table></div>
+<p>「點縮圖時」的三種方式：</p>
+<div class="table"><table><thead><tr><th>方式</th><th>效果</th></tr></thead><tbody><tr><td>不變</td><td>只把視窗帶到前面，位置與大小不變</td></tr><tr><td>最大化</td><td>把視窗最大化（不會蓋到靠邊的縮圖區）</td></tr><tr><td>填滿操作區</td><td>不最大化，把視窗大小調成「螢幕扣掉縮圖區」的範圍</td></tr></tbody></table></div>
+<p>「選擇視窗」上方的功能表：佈局、設定…、檢視、啟動時執行。</p>
+<h2 id="s4">4. 使用縮圖</h2>
+<div class="table"><table><thead><tr><th>操作</th><th>結果</th></tr></thead><tbody><tr><td>點縮圖</td><td>把該視窗帶到前面，並依「點縮圖時」的設定擺放</td></tr><tr><td>把縮圖拖到另一個縮圖上放開</td><td>兩個縮圖互換位置（編號與快速鍵跟著位置走）</td></tr><tr><td>在縮圖上按右鍵</td><td>選擇視窗…、編輯比對規則…、清除槽位、編輯槽位位置…</td></tr><tr><td>在縮圖區空白處按右鍵</td><td>編輯槽位位置…、選擇視窗…、設定…</td></tr></tbody></table></div>
+<p>目前在最前面的視窗，它的縮圖外框會變成橘色。</p>
+<p>如果來源視窗被最小化，縮圖會停止更新（這是 Windows 的限制），槽位上會顯示「已最小化・縮圖暫停（點一下還原）」。可以在設定勾選「來源視窗被最小化時自動還原到最底層」，讓它自動還原但不蓋住其他視窗。</p>
+<h2 id="s5">5. 設定視窗</h2>
+<p>從系統匣右鍵「設定…」或「選擇視窗」的「設定…」開啟。設定視窗可以和「選擇視窗」同時開著；按「確定」才會套用。設定視窗開著的時候，不能切換或管理佈局，也不能編輯槽位位置。</p>
+<h3 id="s6">5.1 縮圖區位置</h3>
+<div class="table"><table><thead><tr><th>選項</th><th>說明</th></tr></thead><tbody><tr><td>左／右／上／下（靠邊）</td><td>像工作列一樣佔住螢幕的一邊，其他視窗最大化時不會蓋到它</td></tr><tr><td>全螢幕（縮圖牆）</td><td>縮圖蓋滿整個螢幕（見第 6 節）</td></tr></tbody></table></div>
+<ul><li><strong>寬度／高度</strong>：靠邊時縮圖區的厚度，單位是 100% 縮放時的像素；螢幕縮放比例較大時會跟著放大。上限是螢幕該方向的 70%。</li><li><strong>槽位下方顯示視窗標題</strong>：關閉後縮圖會大一點。</li></ul>
+<h3 id="s7">5.2 欄 × 列</h3>
+<p>槽位數量由「欄數 × 列數」決定，最多 100 個。縮圖會排成大小一致、對齊、間距一致的格子。</p>
+<ul><li>靠邊的縮圖區比較窄，常見的是 1 欄 × 8 列，或 2 欄 × 8 列。</li><li>可以設定間距，也可以勾選「固定縮圖大小」指定每格的寬與高（放不下時等比例縮小）。</li><li>只有在這裡的設定（或縮圖區位置、大小）改變時才會重新排列；手動調整過的位置不會被平常的操作覆蓋。</li><li>槽位數量達到 24 個以上時會先警告：畫面更新與操作會明顯變慢。</li><li><strong>增加槽位</strong>：新槽位放在空位，既有槽位不動。</li><li><strong>減少槽位</strong>：只會刪除沒有綁定的槽位。不夠刪時，先在槽位上按右鍵選「清除槽位」，或勾選「全部解除綁定並重新排列」。</li></ul>
+<h3 id="s8">5.3 其他設定</h3>
+<ul><li><strong>模式</strong>：單螢幕或雙螢幕（見第 7 節）。</li><li><strong>其他虛擬桌面的視窗</strong>：見第 10 節。</li><li><strong>快速鍵</strong>：見第 9 節。</li><li><strong>啟動時呼叫程式</strong>：見第 11 節。</li><li><strong>語言</strong>：見第 14 節。</li></ul>
+<h2 id="s9">6. 縮圖牆（全螢幕）</h2>
+<p>單螢幕時把縮圖區位置選成「全螢幕」，縮圖會蓋滿整個螢幕，成為一面「縮圖牆」。</p>
+<ul><li>點縮圖：該視窗顯示在牆的上面。</li><li>回到牆：按「顯示／隱藏縮圖區」的快速鍵（預設 <code>Ctrl+Alt+D</code>）。牆已經在最上層時，再按一次會回到上一個視窗。</li><li>設定裡的「回到縮圖牆時，把縮圖牆最大化的視窗還原成原本的大小與位置」建議保持勾選，可以避免被蓋住的瀏覽器停止更新。</li><li><strong>滑鼠回牆</strong>（預設關閉）：在設定勾選後，滑鼠停在螢幕左緣中間約 0.4 秒就會回到牆。拖曳視窗時不會觸發。只對單螢幕的縮圖牆有效。</li></ul>
+<h2 id="s10">7. 雙螢幕</h2>
+<p>在設定把模式改成「雙螢幕」，並指定：</p>
+<ul><li><strong>縮圖螢幕</strong>：放縮圖區的螢幕。</li><li><strong>焦點螢幕</strong>：實際操作視窗的螢幕。兩者必須不同。</li></ul>
+<p>點縮圖時，<strong>原本就在縮圖螢幕上的視窗</strong>會被移到焦點螢幕；原本在其他螢幕上的視窗留在原位，只是被帶到前面。</p>
+<p>雙螢幕模式下選「全螢幕」，縮圖只會蓋滿縮圖螢幕。如果其中一個螢幕被拔掉，ThumbDock 會暫時改用單螢幕模式，螢幕接回後自動恢復。</p>
+<h2 id="s11">8. 編輯槽位位置</h2>
+<p>在縮圖區按右鍵選「編輯槽位位置…」進入編輯模式，槽位外框會變成藍色虛線。內建的 <code>default</code> 佈局不能編輯，請先「另存為新佈局」。</p>
+<div class="table"><table><thead><tr><th>操作</th><th>結果</th></tr></thead><tbody><tr><td>拖曳槽位</td><td>移動</td></tr><tr><td>拖曳槽位的右緣、下緣或右下角</td><td>調整大小</td></tr><tr><td>靠近其他槽位或縮圖區邊界</td><td>邊緣會自動吸附對齊（同一列、同一欄、相鄰並留間距、同寬同高）</td></tr><tr><td>按住 <code>Alt</code> 再拖曳</td><td>不吸附，逐像素移動</td></tr><tr><td>點一下槽位</td><td>選取（外框變成實線粗框）</td></tr><tr><td>選取後按 <code>Del</code></td><td>刪除該槽位（沒有確認視窗）</td></tr><tr><td>在槽位上按右鍵 →「刪除這個槽位」</td><td>同上</td></tr><tr><td>在空白處按右鍵 →「在這裡新增槽位」</td><td>新增槽位</td></tr></tbody></table></div>
+<p>編輯完在右鍵選單選「完成編輯」。刪除已綁定視窗的槽位，會連同它的比對規則一起刪除。</p>
+<h2 id="s12">9. 快速鍵</h2>
+<p>在設定視窗的「快速鍵」區塊調整，所有佈局共用。</p>
+<div class="table"><table><thead><tr><th>功能</th><th>預設</th></tr></thead><tbody><tr><td>顯示／隱藏縮圖區（縮圖牆時為回到牆）</td><td><code>Ctrl+Alt+D</code></td></tr><tr><td>切換到槽位 1–9</td><td><code>Alt+Shift+1</code> ～ <code>Alt+Shift+9</code>（修飾鍵可在設定視窗用三個下拉自訂）</td></tr></tbody></table></div>
+<p>快速鍵被其他程式佔用時，ThumbDock 會通知哪幾個無法註冊。同時開多個 ThumbDock 時，只有最先啟動的那一個有快速鍵。</p>
+<h2 id="s13">10. 其他虛擬桌面的視窗</h2>
+<p>其他虛擬桌面上的視窗一樣可以放進槽位，縮圖一樣會即時更新。點縮圖時有兩種做法，在設定裡選：</p>
+<div class="table"><table><thead><tr><th>選項</th><th>效果</th></tr></thead><tbody><tr><td>切換到視窗所在的桌面（switch）</td><td>Windows 整個切換到那個虛擬桌面</td></tr><tr><td>把視窗搬到目前的桌面（pull）</td><td>桌面不切換，把視窗搬過來</td></tr></tbody></table></div>
+<p>pull 使用 Windows 未公開的介面。遇到不支援的 Windows 版本時，會自動改用 switch。</p>
+<h2 id="s14">11. 自動找回視窗與啟動時呼叫程式</h2>
+<h3 id="s15">11.1 比對規則</h3>
+<p>把視窗放進槽位時，ThumbDock 會記下一組「比對規則」（行程名稱、視窗類別、標題）。視窗關閉後槽位會顯示「等待中」；同樣的視窗再次出現時，會自動放回原本的槽位。重新開機後也一樣。</p>
+<p>規則可以在槽位右鍵的「編輯比對規則…」修改。空白的欄位代表不限制；標題欄位使用正規表示式（Regex）。有多個視窗符合時，綁定第一個。</p>
+<h3 id="s16">11.2 啟動時呼叫程式</h3>
+<p>每個佈局可以有一個「呼叫設定檔」，列出要自動開啟的程式與對應的槽位。ThumbDock 啟動後會依序開啟，並把出現的視窗放進指定槽位。</p>
+<ol><li>在設定勾選「允許 ThumbDock 啟動時依呼叫設定檔呼叫程式」（預設關閉）。</li><li>「選擇視窗」→「啟動時執行」→「編輯呼叫設定檔…」，用表單填寫程式路徑、參數與槽位。</li><li>下次啟動 ThumbDock 時生效；也可以在同一個功能表選「現在呼叫這個佈局的程式」。</li></ol>
+<p>槽位已經有視窗時不會重複開啟。詳細格式見 <a href="launch-config.md">launch-config.md</a>。</p>
+<h2 id="s17">12. Chrome 縮圖停格或變黑</h2>
+<p>Chrome 的視窗被其他視窗完全蓋住，或放在其他虛擬桌面時，Chrome 會自己暫停繪製，縮圖因此停格或變黑。這是 Chrome 的省電機制，不是 ThumbDock 的問題。</p>
+<p>解法是用下面任一個參數啟動 Chrome：</p>
+<pre><code>--disable-features=CalculateNativeWinOcclusion
+--disable-backgrounding-occluded-windows</code></pre>
+<p>注意：</p>
+<ul><li>參數只對<strong>第一個啟動的 Chrome 行程</strong>有效。請先完全結束所有 <code>chrome.exe</code>（包含系統匣裡的背景行程），再帶參數啟動。</li><li>確認方式：在 Chrome 網址列輸入 <code>chrome://version</code>，「命令列」那一行要看得到參數。</li><li>Edge 可以用同樣的參數。Brave 實測沒有效果。</li><li>停用這個機制會讓 Chrome 多用一些 CPU 與電力。</li></ul>
+<p><strong>多個 Chrome 帳號</strong>：要讓每個帳號各開一個視窗，需要知道帳號的設定檔資料夾名稱。切到該帳號，在網址列輸入 <code>chrome://version</code>，「設定檔路徑」最後一段（例如 <code>Profile 4</code>）就是名稱，填在啟動參數 <code>--profile-directory=&quot;Profile 4&quot;</code>。範本見 <a href="launch-sample-chrome-9accounts.json">launch-sample-chrome-9accounts.json</a>。</p>
+<h2 id="s18">13. 佈局</h2>
+<p>一個「佈局」記錄縮圖區的位置與大小、每個槽位的位置與比對規則。可以為不同的工作情境準備不同的佈局。</p>
+<p>在「選擇視窗」的「佈局」功能表：切換佈局、新增空白佈局、另存為新佈局、重新命名、刪除。</p>
+<ul><li><code>default</code> 是內建的固定佈局（靠左、寬 200px、8 個槽位排成一欄），不能修改區域設定、編輯槽位位置、重新命名或刪除。要自訂請先「另存為新佈局」。</li><li>在設定勾選「切換佈局時，也依該佈局的呼叫設定檔備妥程式」，切換佈局時會自動開啟該佈局需要、但還沒開的程式。</li></ul>
+<h2 id="s19">14. 語言</h2>
+<p>設定視窗最下方的「語言」可以選擇介面語言，重新啟動 ThumbDock 後生效。選「自動」會跟隨 Windows 的語言。</p>
+<ul><li>內建：繁體中文、English、日本語、简体中文。</li><li><strong>日文與簡體中文是機器翻譯的初稿</strong>，沒有經過母語者審閱。發現不通順或錯誤的地方，歡迎到專案頁面回報或直接提交修正。</li><li>新增或修正語言不需要重新包裝程式：把語言檔放進 exe 旁的 <code>config\lang\</code> 再重啟即可。做法見 <a href="i18n.md">i18n.md</a>。</li><li>不支援由右到左書寫的語言。</li></ul>
+<h2 id="s20">15. 命令列參數與同時開多個</h2>
+<div class="table"><table><thead><tr><th>參數</th><th>說明</th></tr></thead><tbody><tr><td><code>--layout &lt;名稱&gt;</code></td><td>用指定的佈局啟動</td></tr><tr><td><code>--monitor &lt;編號&gt;</code></td><td>單螢幕模式，縮圖區放在指定的螢幕（編號在設定視窗看得到）</td></tr><tr><td><code>--no-launch</code></td><td>這次不執行呼叫設定檔</td></tr><tr><td><code>--safe</code></td><td>安全啟動（見下方）</td></tr><tr><td><code>--help</code></td><td>顯示說明</td></tr></tbody></table></div>
+<p><strong>同時開多個</strong>：每個實體螢幕最多一個 ThumbDock，每個要使用不同的佈局。</p>
+<pre><code>ThumbDock.exe --layout layoutname_1 --monitor 1
+ThumbDock.exe --layout layoutname_2 --monitor 2</code></pre>
+<p>雙螢幕模式的佈局會佔用全部螢幕，執行期間不能再開第二個。</p>
+<p><strong>安全啟動</strong>：設定調壞、縮圖區擋住畫面無法操作時，用 <code>ThumbDock.exe --safe</code> 啟動。它會忽略上次的佈局，改用內建的 <code>default</code> 佈局，並且不呼叫任何程式。</p>
+<h2 id="s21">16. 公司環境與端點防護軟體</h2>
+<p>ThumbDock 的工作方式是列舉所有視窗、查詢其他程式的名稱與權限、把其他程式的視窗帶到前面或移動位置。這些動作在部分公司的端點防護軟體（EDR／XDR）看來可能像可疑行為，而被警示或終止。</p>
+<ul><li>程式不會連線到網路，不會讀取其他程式的記憶體，也不需要系統管理員權限。</li><li>唯一會讀取其他程式資料的地方：在呼叫設定檔的編輯表單選擇 Chrome／Edge 時，會讀取瀏覽器的設定檔清單（帳號名稱），用來顯示下拉選單。不使用這個表單就不會讀取。</li><li>如果在公司環境被攔截，請聯絡資訊安全管理人員。<strong>對這類行為偵測，程式碼簽章通常沒有幫助</strong>；可行的做法是由管理者把該版本發行檔的 SHA256 雜湊加入允許清單。每個版本的雜湊列在發行頁面。</li><li>雜湊只對應單一檔案。更新版本或自行從原始碼建置後，雜湊會不同，需要重新申請。</li><li>「啟動時呼叫程式」預設關閉，也是基於同樣的考量。</li></ul>
+<p>自行確認檔案雜湊（PowerShell）：</p>
+<pre><code>Get-FileHash .\ThumbDock.exe -Algorithm SHA256</code></pre>
+<h2 id="s22">17. 已知行為與限制</h2>
+<div class="table"><table><thead><tr><th>項目</th><th>說明</th></tr></thead><tbody><tr><td>最大化</td><td>視窗最大化不會蓋到靠邊的縮圖區</td></tr><tr><td>全螢幕程式</td><td>瀏覽器按 <code>F11</code> 這類全螢幕會蓋住縮圖區（縮圖區會讓位，和工作列相同）</td></tr><tr><td>命令提示字元 <code>Alt+Enter</code></td><td>全螢幕時縮圖區仍在它上面</td></tr><tr><td>系統管理員視窗</td><td>以系統管理員身分執行的視窗，縮圖與切換正常，但 ThumbDock 無法移動或調整它的大小。縮圖標題列右端會顯示藍色盾牌。要移動它，請以系統管理員身分啟動 ThumbDock</td></tr><tr><td>最小化的視窗</td><td>縮圖停止更新（Windows 的限制）</td></tr><tr><td>MobaTextEditor</td><td>MobaXterm 內建的文字編輯器被 ThumbDock 最大化時會卡住後關閉。請不要把它放進設為「最大化」的槽位</td></tr><tr><td>Microsoft Store 應用程式</td><td>「啟動時呼叫程式」不支援</td></tr><tr><td>快速鍵</td><td>同時開多個時，只有最先啟動的那一個有快速鍵</td></tr><tr><td>其他虛擬桌面（switch）</td><td>切換的是整個 Windows 的桌面，所有螢幕一起切換</td></tr></tbody></table></div>
+<h2 id="s23">18. 檔案位置與疑難排解</h2>
+<p>所有檔案都在 <code>ThumbDock.exe</code> 所在的資料夾：</p>
+<div class="table"><table><thead><tr><th>路徑</th><th>內容</th></tr></thead><tbody><tr><td><code>config\settings.json</code></td><td>全域設定（快速鍵、上次使用的佈局等）。同時開多個時，其他實例用 <code>settings.DISPLAYn.json</code></td></tr><tr><td><code>config\language.txt</code></td><td>介面語言</td></tr><tr><td><code>config\layouts\</code></td><td>佈局檔</td></tr><tr><td><code>config\launch\</code></td><td>呼叫設定檔</td></tr><tr><td><code>config\lang\</code></td><td>自行加入或覆蓋的語言檔</td></tr><tr><td><code>logs\thumbdock.log</code></td><td>記錄檔，回報問題時請附上</td></tr></tbody></table></div>
+<p>常見問題：</p>
+<div class="table"><table><thead><tr><th>狀況</th><th>處理</th></tr></thead><tbody><tr><td>縮圖區太大，擋住畫面無法操作</td><td>結束程式後用 <code>ThumbDock.exe --safe</code> 啟動</td></tr><tr><td>縮圖變黑或停格</td><td>Chrome／Edge 見第 12 節；視窗被最小化見第 4 節</td></tr><tr><td>點縮圖後視窗沒有移動</td><td>該視窗可能以系統管理員身分執行（第 17 節）</td></tr><tr><td>重新開機後槽位顯示「等待中」</td><td>程式還沒開，或標題變了。用「編輯比對規則…」放寬規則</td></tr><tr><td>開啟「選擇視窗」時程式被關閉</td><td>可能被端點防護軟體攔截（第 16 節）</td></tr><tr><td>快速鍵沒有作用</td><td>被其他程式佔用，或這不是最先啟動的 ThumbDock</td></tr></tbody></table></div>
+<h2 id="s24">19. 移除</h2>
+<p>結束 ThumbDock 後，刪除整個資料夾即可。ThumbDock 不會寫入登錄檔，也不會在其他位置留下檔案。</p>
+</main>
+</div>
+</body>
+</html>

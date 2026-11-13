@@ -1,0 +1,377 @@
+﻿"No","Status","English","Translation","Chinese (source)","Previous English","Note"
+"1","untranslated","  {0} windows","  ウィンドウ {0} 個","  共 {0} 個視窗","",""
+"2","untranslated","  Put into slot {0}","  スロット {0} に入れました","  已放進槽位 {0}","",""
+"3","untranslated","  Cannot create thumbnail (the window may have closed)","  サムネイルを作成できません（ウィンドウが閉じられた可能性があります）","  無法建立縮圖（視窗可能已關閉）","",""
+"4","untranslated","  Tick the window to put into slot {0} in column {0}","  列 {0} で、スロット {0} に入れるウィンドウにチェックを付けてください","  請在欄位 {0} 勾選要放進槽位 {0} 的視窗","",""
+"5","untranslated","  Clicking the thumbnail keeps the window's position and size","  サムネイルクリック時、位置とサイズを保持","  點縮圖時保持原位置與大小","",""
+"6","untranslated","  Clicking the thumbnail maximizes the window on its original monitor","  サムネイルクリック時、元の画面で最大化","  點縮圖時會在原本的螢幕上最大化","",""
+"7","untranslated","  Clicking the thumbnail resizes the window to the work area (not maximized)","  サムネイルクリック時、作業領域のサイズに調整（最大化しない）","  點縮圖時會調成操作區大小（不最大化）","",""
+"8","untranslated","/c  Close the window after running","/c  実行後にウィンドウを閉じる","/c　執行後關閉視窗","",""
+"9","untranslated","/k  Keep the window open after running","/k  実行後もウィンドウを開いたままにする","/k　執行後保持視窗開啟","",""
+"10","untranslated","ThumbDock {0} Settings","ThumbDock {0} 設定","ThumbDock {0} 設定","",""
+"11","untranslated","ThumbDock {0} - Tip","ThumbDock {0} - ヒント","ThumbDock {0} － 使用提醒","",""
+"12","untranslated","ThumbDock {0} - Select Windows","ThumbDock {0} - ウィンドウ選択","ThumbDock {0} － 選擇視窗","",""
+"13","untranslated","ThumbDock command-line options:
+
+  --layout <name>    Start with the given layout (the name stored in the layout file)
+  --monitor <no.>    Single-monitor mode only, thumbnail zone on the given monitor
+                     No. 2 means \\.\DISPLAY2 (shown in the settings window)
+  --no-launch        Do not start the programs of the layout's launch config this time (like safe mode, overrides the setting)
+  --safe             Safe start: ignore --layout and the last layout, use the built-in ""default"" layout
+                     (left side, 1x8, 200px wide, cannot be changed) and start no programs. For when settings broke things
+  --help, -h, /?     Show this help
+
+Multi-monitor, multi-instance rules:
+  At most one ThumbDock per physical monitor, each with its own layout, independent of each other.
+  A dual-monitor layout takes all monitors; no other instance can run meanwhile.
+  Only the first instance started registers the global hotkeys.
+
+Examples:
+  ThumbDock.exe
+  ThumbDock.exe --layout layoutname_1
+  ThumbDock.exe --layout layoutname_2 --monitor 1
+  ThumbDock.exe --layout layoutname_3 --monitor 2
+
+Error log: logs\thumbdock.log
+
+","ThumbDock コマンドライン オプション：
+
+  --layout <名前>    指定したレイアウトで起動します（レイアウトファイル内の name）
+  --monitor <番号>   1 画面モード専用。サムネイル領域を指定した画面に配置します
+                     番号 2 は \\.\DISPLAY2 を表します（設定ウィンドウで確認できます）
+  --no-launch        今回はレイアウトの起動設定ファイルのプログラムを起動しません（セーフモードと同様、設定より優先）
+  --safe             セーフスタート：--layout と前回のレイアウトを無視し、内蔵の「default」レイアウト
+                     （左側、1x8、幅 200px、変更不可）を使い、プログラムも起動しません。設定が原因で動かなくなったときに使います
+  --help, -h, /?     このヘルプを表示します
+
+マルチ画面・多重起動のルール：
+  ThumbDock は物理画面ごとに 1 つまで。それぞれ別のレイアウトを使い、互いに独立して動作します。
+  2 画面モードのレイアウトはすべての画面を使用するため、実行中は他のインスタンスを起動できません。
+  グローバルホットキーを登録するのは、最初に起動したインスタンスだけです。
+
+例：
+  ThumbDock.exe
+  ThumbDock.exe --layout layoutname_1
+  ThumbDock.exe --layout layoutname_2 --monitor 1
+  ThumbDock.exe --layout layoutname_3 --monitor 2
+
+エラーログ：logs\thumbdock.log
+
+","ThumbDock 命令列參數：
+
+  --layout <名稱>    以指定的佈局啟動（名稱即佈局檔內的 name）
+  --monitor <編號>   只用單螢幕模式，縮圖區放在指定螢幕
+                     編號 2 代表 \\.\DISPLAY2（設定視窗裡看得到）
+  --no-launch        本次不呼叫佈局呼叫設定檔中的程式（類似安全模式，優先於設定）
+  --safe             安全啟動：忽略 --layout 與上次的佈局，改用內建「default」佈局
+                     （左邊 1×8、寬 200px，不可修改），並且不呼叫程式。設定調壞卡住時使用
+  --help, -h, /?     顯示這份說明
+
+多螢幕多開規則：
+  每個實體螢幕最多一個 ThumbDock，各自使用不同的佈局，互不干擾。
+  雙螢幕模式的佈局會佔用全部螢幕，執行期間不能再開其他實例。
+  只有最先啟動的實例會註冊全域快速鍵。
+
+範例：
+  ThumbDock.exe
+  ThumbDock.exe --layout layoutname_1
+  ThumbDock.exe --layout layoutname_2 --monitor 1
+  ThumbDock.exe --layout layoutname_3 --monitor 2
+
+錯誤紀錄：logs\thumbdock.log
+
+","",""
+"14","untranslated","[Minimized] ","[最小化] ","[已最小化] ","",""
+"15","untranslated","pull uses undocumented Windows interfaces; if this Windows version does not support it, switch is used automatically.","pull は Windows の非公開インターフェイスを使用します。この Windows バージョンが対応していない場合は、自動的に switch を使用します。","pull 用到 Windows 未公開的介面；這個 Windows 版本不支援時，會自動改用 switch。","",""
+"16","untranslated","{0}
+
+It cannot be edited with the form. Fix it in Notepad instead?","{0}
+
+フォームでは編集できません。メモ帳で修正しますか？","{0}
+
+無法用表單編輯，要改用記事本修正嗎？","",""
+"17","untranslated","No window to bind was found within {1} s after launching {0} (slot {2}).","{0} の起動後 {1} 秒以内に、割り当てできるウィンドウが見つかりませんでした（スロット {2}）。","{0} 呼叫後 {1} 秒內沒有找到可綁定的視窗（槽位 {2}）。","",""
+"18","untranslated","{0} copy","{0} のコピー","{0} 複本","",""
+"19","untranslated","{0} has no path, skipped.","{0}：path がないため、スキップしました。","{0}沒有 path，已略過。","",""
+"20","untranslated","{0} ({1}): slot must be a number 1 or greater, skipped.","{0}（{1}）：slot は 1 以上の数値でなければなりません。スキップしました。","{0}（{1}）的 slot 必須是 1 以上的數字，已略過。","",""
+"21","untranslated","{0} ({1}): titleRegex is invalid ({2}); this rule will never match.","{0}（{1}）：titleRegex が無効です（{2}）。このルールは一致することがありません。","{0}（{1}）的 titleRegex 無效（{2}），這個規則永遠不會符合。","",""
+"22","untranslated","{0} ({1}): slot {2} is already used by an earlier item, skipped.","{0}（{1}）：スロット {2} は前の項目で使用済みのため、スキップしました。","{0}（{1}）的槽位 {2} 已被前面的項目使用，已略過。","",""
+"23","untranslated","{0} (in use by another instance)","{0}（他のインスタンスが使用中）","{0}（其他實例使用中）","",""
+"24","untranslated",", ","、","、","",""
+"25","untranslated","""default"" is a fixed layout (used by safe start): mode, thumbnail area position and size, and columns × rows cannot be changed. To customize, first use ""Save as"" to create a new layout.","「default」は固定レイアウト（セーフスタート用）です。モード、サムネイル領域の位置とサイズ、列 × 行は変更できません。カスタマイズするには、先に「新しいレイアウトとして保存」で新しいレイアウトを作成してください。","「default」是固定佈局（安全啟動使用）：模式、縮圖區位置與大小、欄×列都不可修改。要自訂請先「另存為」新佈局。","",""
+"26","untranslated","""{0}""","「{0}」","「{0}」","",""
+"27","untranslated","""{0}"" is running as administrator, so ThumbDock cannot move or resize it (thumbnails and switching still work). Move it yourself, or start ThumbDock as administrator.","「{0}」は管理者として実行されているため、ThumbDock では移動もサイズ変更もできません（サムネイルと切り替えは使えます）。手動で移動するか、ThumbDock を管理者として起動してください。","「{0}」以系統管理員身分執行，ThumbDock 無法移動或調整它的位置與大小（縮圖與切換不受影響）。請自行移動它，或以系統管理員身分啟動 ThumbDock。","",""
+"28","untranslated","""{0}"" is a reserved name (the fixed layout used by safe start). Please use another name.","「{0}」は予約済みの名前（セーフスタート用の固定レイアウト）です。別の名前を使ってください。","「{0}」是保留名稱（安全啟動用的固定佈局），請改用其他名稱。","",""
+"29","untranslated","""{0}"" is a fixed layout (used by safe start); its slot positions cannot be edited. To customize, use ""Save as"" to create a new layout first.","「{0}」は固定レイアウト（セーフスタート用）のため、スロット位置を編集できません。カスタマイズするには、先に「新しいレイアウトとして保存」で新しいレイアウトを作成してください。","「{0}」是固定佈局（安全啟動使用），不能編輯槽位位置。要自訂請先「另存為」新佈局。","",""
+"30","untranslated","""{0}"" is a fixed layout and cannot be deleted.","「{0}」は固定レイアウトのため、削除できません。","「{0}」是固定佈局，不能刪除。","",""
+"31","untranslated","""{0}"" is a fixed layout and cannot be renamed.","「{0}」は固定レイアウトのため、名前を変更できません。","「{0}」是固定佈局，不能重新命名。","",""
+"32","untranslated","Program / shortcut / batch file","プログラム／ショートカット／バッチファイル","一般程式／捷徑／批次檔","",""
+"33","untranslated","Top (docked)","上（ドッキング）","上（靠邊）","",""
+"34","untranslated","The drop-down lists the browser's profiles; if it cannot be read, type the folder name directly, e.g. Default or Profile 3.","一覧はブラウザーのプロファイルから取得します。読み取れない場合は、Default や Profile 3 などのフォルダー名を直接入力してください。","下拉選單來自瀏覽器的設定檔清單；讀不到時直接輸入資料夾名稱，如 Default、Profile 3。","",""
+"35","untranslated","Bottom (docked)","下（ドッキング）","下（靠邊）","",""
+"36","untranslated","Do not lower the priority of covered windows (--disable-backgrounding-occluded-windows)","隠れたウィンドウの優先度を下げない（--disable-backgrounding-occluded-windows）","不要降低被蓋住視窗的優先權（--disable-backgrounding-occluded-windows）","",""
+"37","untranslated","Unknown option: {0}","不明なオプション：{0}","不認得的參數：{0}","",""
+"38","untranslated","Unchanged","変更なし","不變","",""
+"39","untranslated","Primary monitor","メイン画面","主螢幕","",""
+"40","untranslated","You can also put them in the args of a launch config (see launch-config.md).","起動設定ファイルの args に書くこともできます（launch-config.md を参照）。","也可寫在「呼叫設定檔」的 args（詳見文件 launch-config.md）。","",""
+"41","untranslated","Interface language","表示言語","介面語言","",""
+"42","untranslated","These hotkeys are used by other programs and could not be registered: {0}","次のホットキーは他のプログラムが使用中のため、登録できませんでした：{0}","以下快速鍵已被其他程式使用，無法註冊：{0}","",""
+"43","untranslated","Don't show again","今後表示しない","以後不顯示","",""
+"44","untranslated","Layout","レイアウト","佈局","",""
+"45","untranslated","Layout ""{0}""","レイアウト「{0}」","佈局「{0}」","",""
+"46","untranslated","Layout ""{0}"" already exists. Overwrite it?","レイアウト「{0}」は既に存在します。上書きしますか？","佈局「{0}」已存在，要覆蓋嗎？","",""
+"47","untranslated","Layout ""{0}"" is a dual-monitor layout and cannot be combined with --monitor (with several instances, each can only use single-monitor mode).","レイアウト「{0}」は 2 画面モードのため、--monitor と併用できません（多重起動では各インスタンスは 1 画面モードのみ使用できます）。","佈局「{0}」是雙螢幕模式，不能搭配 --monitor（多開時每個實例只能用單螢幕模式）。","",""
+"48","untranslated","Layout ""{0}"" is a dual-monitor layout, but monitor {1} is already used by another ThumbDock.","レイアウト「{0}」は 2 画面モードですが、画面 {1} は別の ThumbDock が使用中です。","佈局「{0}」是雙螢幕模式，但螢幕 {1} 已有另一個 ThumbDock 在使用。","",""
+"49","untranslated","Layout ""{0}"" is in use by another ThumbDock.","レイアウト「{0}」は別の ThumbDock が使用中です。","佈局「{0}」正被另一個 ThumbDock 使用。","",""
+"50","untranslated","Layout ""{0}"" is in use by another ThumbDock.
+Each instance needs its own layout; use --layout to choose another one.","レイアウト「{0}」は別の ThumbDock が使用中です。
+インスタンスごとに別のレイアウトが必要です。--layout で他のレイアウトを指定してください。","佈局「{0}」正被另一個 ThumbDock 使用。
+每個實例需使用不同的佈局，請用 --layout 指定其他佈局。","",""
+"51","untranslated","Layout name:","レイアウト名：","佈局名稱：","",""
+"52","untranslated","The layout changed from ""{0}""; settings were not applied.","レイアウトが「{0}」から変更されたため、設定は適用されませんでした。","佈局已從「{0}」變更，設定未套用。","",""
+"53","untranslated","Automatically restore a minimized source window to the bottom of the z-order (thumbnail keeps updating without covering other windows)","ソースウィンドウが最小化されたら自動的に最背面へ復元（サムネイルは更新され続け、他のウィンドウを覆いません）","來源視窗被最小化時自動還原到最底層（縮圖持續更新，不會蓋住其他視窗）","",""
+"54","untranslated","For example, with Ctrl+Alt selected, Ctrl+Alt+3 switches to slot 3.","例：Ctrl+Alt を選ぶと、Ctrl+Alt+3 でスロット 3 に切り替わります。","例如選 Ctrl+Alt 時，Ctrl+Alt+3 會切到槽位 3。","",""
+"55","untranslated","Note","メモ","備註","",""
+"56","untranslated","Save","保存","儲存","",""
+"57","untranslated","Allow ThumbDock to launch programs from the launch config file at startup (including the tray menu)","起動時に ThumbDock が起動設定ファイルのプログラムを起動することを許可（タスクトレイメニューを含む）","允許 ThumbDock 啟動時依「呼叫設定檔」呼叫程式（含系統匣選單）","",""
+"58","untranslated","Full screen (thumbnail wall / fill)","全画面（サムネイルウォール / fill）","全螢幕（縮圖牆 / fill）","",""
+"59","untranslated","Other flags","その他のフラグ","其他旗標","",""
+"60","untranslated","Other desktop","他のデスクトップ","其他桌面","",""
+"61","untranslated","Windows on other virtual desktops","他の仮想デスクトップのウィンドウ","其他虛擬桌面的視窗","",""
+"62","untranslated","When switching layouts, also get programs ready from that layout's launch config (programs already open are neither closed nor opened again)","レイアウト切り替え時に、そのレイアウトの起動設定ファイルでプログラムも準備する（起動済みのものは閉じず、重複起動もしません）","切換佈局時，也依該佈局的呼叫設定檔備妥程式（已開啟的不會關閉或重複開啟）","",""
+"63","untranslated","Switch to slot 1–9","スロット 1–9 に切り替え","切換到槽位 1–9","",""
+"64","untranslated","Switch to the desktop the window is on (switch)","ウィンドウのあるデスクトップに切り替え（switch）","切換到視窗所在的桌面（switch）","",""
+"65","untranslated","Delete","削除","刪除","",""
+"66","untranslated","Delete current layout…","現在のレイアウトを削除…","刪除目前佈局…","",""
+"67","untranslated","Delete this slot","このスロットを削除","刪除這個槽位","",""
+"68","untranslated","Secondary monitor","サブ画面","副螢幕","",""
+"69","untranslated","Tick column 1–{0} to put a window into the matching thumbnail slot; click again to remove it. The list updates automatically.
+""On thumbnail click"": click to cycle through unchanged / maximize / fill work area (not maximized; sized to the screen minus the thumbnail area). ""Original position"": the position recorded when the window was bound.","列 1–{0} にチェックを付けると、対応するサムネイルスロットにウィンドウが入ります。もう一度クリックすると解除されます。一覧は自動的に更新されます。
+「サムネイルクリック時」：クリックで 変更なし／最大化／作業領域に合わせる（最大化せず、画面からサムネイル領域を除いたサイズにします）を切り替えます。「元の位置」：割り当て時に記録した位置です。","勾選欄位 1–{0} 即可把視窗放進對應的縮圖槽位，再點一次取消。清單會自動更新。
+「點縮圖時」點一下切換：不變／最大化／填滿操作區（不最大化，大小設成螢幕扣掉縮圖區）。「原位置」：綁定時記錄的位置。","",""
+"70","untranslated","Original position","元の位置","原位置","",""
+"71","untranslated","Arguments","引数","參數","",""
+"72","untranslated","Option {0} needs a value.","オプション {0} には値が必要です。","參數 {0} 需要指定值。","",""
+"73","untranslated","Cancel","キャンセル","取消","",""
+"74","untranslated","Save as new layout","新しいレイアウトとして保存","另存為新佈局","",""
+"75","untranslated","Save as new layout…","新しいレイアウトとして保存…","另存為新佈局…","",""
+"76","untranslated","Only one monitor detected, ","画面が 1 つしか検出されないため、","只偵測到一個螢幕，","",""
+"77","untranslated","Right (docked)","右（ドッキング）","右（靠邊）","",""
+"78","untranslated","Launch finished: {0} bound, {1} skipped (window already open), {2} failed or timed out.","起動完了：割り当て {0} 件、スキップ {1} 件（ウィンドウが既にあります）、失敗またはタイムアウト {2} 件。","呼叫完成：綁定 {0} 個，已有視窗而略過 {1} 個，失敗或逾時 {2} 個。","",""
+"79","untranslated","Launch config","起動設定ファイル","呼叫設定檔","",""
+"80","untranslated","Launch config saved.","起動設定ファイルを保存しました。","呼叫設定檔已儲存。","",""
+"81","untranslated","Launch config saved (""Allow starting programs from the launch config"" is currently off).","起動設定ファイルを保存しました（「起動設定ファイルによるプログラム起動を許可」は現在オフです）。","呼叫設定檔已儲存（目前未啟用「允許依呼叫設定檔呼叫程式」）。","",""
+"82","untranslated","Launch config format error ({0} {1}): {2}
+Hint: backslashes in paths must be doubled, e.g. C:\\Program Files\\app.exe","起動設定ファイルの形式エラー（{0} {1}）：{2}
+ヒント：パス内のバックスラッシュは 2 つ重ねて書きます。例：C:\\Program Files\\app.exe","呼叫設定檔格式錯誤（{0} {1}）：{2}
+提示：路徑中的反斜線要寫成兩個，例如 C:\\Program Files\\app.exe","",""
+"83","untranslated","The launch config contains no programs (launch is empty).","起動設定ファイルにプログラムがありません（launch が空です）。","呼叫設定檔裡沒有任何程式（launch 是空的）。","",""
+"84","untranslated","Command Prompt (CMD)","コマンド プロンプト (CMD)","命令提示字元 (CMD)","",""
+"85","untranslated","Launch programs at startup","起動時のプログラム起動","啟動時呼叫程式","",""
+"86","untranslated","Run at startup","起動時に実行","啟動時執行","",""
+"87","untranslated","Enable global hotkeys","グローバルホットキーを有効にする","啟用全域快速鍵","",""
+"88","untranslated","Single monitor","1 画面","單螢幕","",""
+"89","untranslated","Choosing fill in single-monitor mode makes a ""thumbnail wall"": thumbnails cover the whole screen, clicking one shows that window above the wall, and the hotkey returns to the wall. In dual-monitor mode, fill only covers the thumbnail monitor.","1 画面モードで fill を選ぶと「サムネイルウォール」になります。サムネイルが画面全体を覆い、クリックするとそのウィンドウがウォールの上に表示され、ホットキーでウォールに戻ります。2 画面モードの fill はサムネイル画面だけを覆います。","單螢幕選 fill 會變成「縮圖牆」：縮圖蓋滿整個螢幕，點縮圖後該視窗顯示在牆之上，按快速鍵回到牆。雙螢幕的 fill 只佔縮圖螢幕。","",""
+"90","untranslated","When returning to the thumbnail wall, restore windows that were maximized over the wall to their original size and position (keeps covered browsers from freezing)","サムネイルウォールに戻るとき、ウォール上で最大化したウィンドウを元のサイズと位置に戻す（隠れたブラウザーの更新停止を防ぎます）","回到縮圖牆時，把縮圖牆最大化的視窗還原成原本的大小與位置（避免被蓋住的瀏覽器停止更新）","",""
+"91","untranslated","Fixed width × height (pixels)","固定の幅 × 高さ（ピクセル）","固定寬 × 高（像素）","",""
+"92","untranslated","Fixed thumbnail size (scaled down proportionally when it does not fit)","サムネイルのサイズを固定（収まらないときは比率を保って縮小）","固定縮圖大小（放不下時等比例縮小）","",""
+"93","untranslated","Add slot here","ここにスロットを追加","在這裡新增槽位","",""
+"94","untranslated","Fill work area","作業領域に合わせる","填滿操作區","",""
+"95","untranslated","Increasing: new slots go into empty spots and existing slots stay put. Reducing: only unbound slots (no match rule, no window) are deleted;
+if there are not enough, first right-click a slot and choose ""Clear slot"" to unbind it, or tick the option above to reset everything at once.","増やすとき：新しいスロットは空いた場所に入り、既存のスロットは動きません。減らすとき：未割り当てのスロット（一致ルールもウィンドウもないもの）だけを削除します。
+足りない場合は、先にスロットを右クリックして「スロットをクリア」で割り当てを解除するか、上のオプションにチェックを付けて一括でリセットしてください。","增加：新槽位放在空位，不動既有槽位。縮減：只刪除未綁定的槽位（沒有比對規則、沒有視窗）；
+不夠刪時請先到槽位右鍵「清除槽位」解除綁定，或勾選上面的選項一次重設。","",""
+"96","untranslated","Failed: {0}","失敗：{0}","失敗：{0}","",""
+"97","untranslated","If you monitor Chrome with thumbnails, the thumbnail of a Chrome window that is covered by other windows or on another virtual desktop may stop updating (turns black or freezes).
+
+This happens because Chrome pauses painting occluded windows; it is not a ThumbDock problem. The fix is to start Chrome with the flags below (either one is enough; both are copied together):
+
+Note: the flags only take effect for the first Chrome process that starts. Fully quit all chrome.exe processes (including background ones in the system tray) first, then start Chrome with the flags; you can check under ""Command Line"" at chrome://version.","サムネイルで Chrome を監視する場合、他のウィンドウに隠れている、または他の仮想デスクトップにある Chrome ウィンドウのサムネイルは、更新が止まることがあります（黒くなる、または固まります）。
+
+これは Chrome が隠れたウィンドウの描画を一時停止するためで、ThumbDock の問題ではありません。対処方法は、下記のフラグを付けて Chrome を起動することです（どちらか一方で十分です。コピーは両方まとめて行われます）：
+
+注意：フラグは最初に起動した Chrome プロセスにしか効きません。先にすべての chrome.exe（タスクトレイのバックグラウンドプロセスを含む）を完全に終了してから、フラグを付けて Chrome を起動してください。chrome://version の「コマンドライン」で確認できます。","如果要用縮圖監看 Chrome，被其他視窗蓋住或在其他虛擬桌面的 Chrome，縮圖可能會停止更新（變黑或停格）。
+
+原因是 Chrome 會暫停繪製被遮蔽的視窗，不是 ThumbDock 的問題。解法是用下列參數啟動 Chrome（兩個擇一即可，下方一起複製）：
+
+注意：參數只對「第一個啟動的 Chrome 行程」有效。請先完全結束所有 chrome.exe（含系統匣背景行程），再帶參數啟動；可到 chrome://version 的「命令列」確認。","",""
+"98","untranslated","Safe mode: using the built-in ""{0}"" layout (left side, 1x8, 200px wide); no programs are started this time.","セーフモード：内蔵の「{0}」レイアウト（左側、1x8、幅 200px）を使用します。今回はプログラムを起動しません。","安全模式：使用內建「{0}」佈局（左邊 1×8、寬 200px），本次不呼叫程式。","",""
+"99","untranslated","Finish editing","編集を終了","完成編輯","",""
+"100","untranslated","Actual command","実際のコマンド","實際內容","",""
+"101","untranslated","Width / height (pixels at 100% scaling)","幅／高さ（100% スケール時のピクセル）","寬度／高度（100% 縮放時的像素）","",""
+"102","untranslated","Working directory","作業フォルダー","工作目錄","",""
+"103","untranslated","Left (docked, like the taskbar)","左（ドッキング、タスクバーと同様）","左（靠邊，像工作列）","",""
+"104","untranslated","Disconnected monitor","切断された画面","已中斷的螢幕","",""
+"105","untranslated","Minimized - thumbnail paused (click to restore)","最小化中・サムネイル停止（クリックで復元）","已最小化・縮圖暫停（點一下還原）","",""
+"106","untranslated","Another ThumbDock is already using monitor {0}.","画面 {0} は別の ThumbDock が使用中です。","已有另一個 ThumbDock 在使用螢幕 {0}。","",""
+"107","untranslated","Another ThumbDock is already running; dual-monitor mode needs all monitors (conflict: {0}).","別の ThumbDock が実行中です。2 画面モードにはすべての画面が必要です（競合：{0}）。","已有另一個 ThumbDock 在執行，雙螢幕模式需要佔用全部螢幕（衝突：{0}）。","",""
+"108","untranslated","Sent (the test only starts the program; it does not bind a slot)","送信しました（テストではプログラムを起動するだけで、スロットへの割り当ては行いません）","已送出（測試只開啟程式，不會綁定槽位）","",""
+"109","untranslated","Profile","プロファイル","帳號設定檔","",""
+"110","untranslated","Hotkeys (shared by all layouts)","ホットキー（全レイアウト共通）","快速鍵（所有佈局共用）","",""
+"111","untranslated","ThumbDock is already running on every monitor; cannot start another.","すべての画面で ThumbDock が実行中のため、これ以上起動できません。","所有螢幕都已有 ThumbDock 在執行，無法再啟動。","",""
+"112","untranslated","Layout ""{0}"" not found. Existing layouts: {1}","レイアウト「{0}」が見つかりません。既存のレイアウト：{1}","找不到佈局「{0}」。現有佈局：{1}","",""
+"113","untranslated","Focus monitor {0} not found, ","フォーカス画面 {0} が見つからないため、","找不到焦點螢幕 {0}，","",""
+"114","untranslated","Thumbnail monitor {0} not found, ","サムネイル画面 {0} が見つからないため、","找不到縮圖螢幕 {0}，","",""
+"115","untranslated","Thumbnail monitor {0} not found, using the primary monitor.","サムネイル画面 {0} が見つからないため、メイン画面を使用します。","找不到縮圖螢幕 {0}，改用主螢幕。","",""
+"116","untranslated","Monitor ""{0}"" not found. Current monitors: {1}","画面「{0}」が見つかりません。現在の画面：{1}","找不到螢幕「{0}」。目前的螢幕：{1}","",""
+"117","untranslated","Move the window to the current desktop (pull)","ウィンドウを現在のデスクトップに移動（pull）","把視窗搬到目前的桌面（pull）","",""
+"118","untranslated","Command","コマンド","指令","",""
+"119","untranslated","Edit in Notepad (advanced)…","メモ帳で編集（上級者向け）…","改用記事本編輯（進階）…","",""
+"120","untranslated","Put into slot {0}","スロット {0} に入れる","放進槽位 {0}","",""
+"121","untranslated","Add","追加","新增","",""
+"122","untranslated","New blank layout","空のレイアウトを新規作成","新增空白佈局","",""
+"123","untranslated","New blank layout…","空のレイアウトを新規作成…","新增空白佈局…","",""
+"124","untranslated","Flags","フラグ","旗標","",""
+"125","untranslated","Timing","タイミング","時間","",""
+"126","untranslated","Temporarily switched to single-monitor mode.","一時的に 1 画面モードに切り替えました。","暫時改為單螢幕模式。","",""
+"127","untranslated","Changing the language takes effect after ThumbDock is restarted. See docs/i18n.md for how to add a language.","言語の変更は ThumbDock の再起動後に反映されます。言語の追加方法は docs/i18n.md を参照してください。","更改語言後，重新啟動 ThumbDock 才會生效。新增語言的方法見 docs/i18n.md。","",""
+"128","untranslated","Maximized","最大化","最大化","",""
+"129","untranslated","Minimized (was {0})","最小化（元は {0}）","最小化（原為 {0}）","",""
+"130","untranslated","Minimized (was maximized)","最小化（元は最大化）","最小化（原為最大化）","",""
+"131","untranslated","There are unsaved changes; switching to Notepad will discard them. Continue?","保存されていない変更があります。メモ帳に切り替えると破棄されます。続行しますか？","有尚未儲存的修改，改用記事本會放棄這些修改。要繼續嗎？","",""
+"132","untranslated","There are unsaved changes. Discard them?","保存されていない変更があります。破棄しますか？","有尚未儲存的修改，要放棄嗎？","",""
+"133","untranslated","Started with --no-launch this time, so this is forcibly disabled.","今回は --no-launch で起動したため、強制的に無効になっています。","本次以 --no-launch 啟動，已強制停用。","",""
+"134","untranslated","Desktop {0}","デスクトップ {0}","桌面 {0}","",""
+"135","untranslated","Slot","スロット","槽位","",""
+"136","untranslated","Slot {0}","スロット {0}","槽位 {0}","",""
+"137","untranslated","Slot {0} does not exist (there are only {1}); skipping {2}.","スロット {0} は存在しません（現在 {1} 個のみ）。{2} をスキップします。","槽位 {0} 不存在（目前只有 {1} 個），略過 {2}。","",""
+"138","untranslated","Match rule for slot {0}","スロット {0} の一致ルール","槽位 {0} 的比對規則","",""
+"139","untranslated","Show window title below each slot","各スロットの下にウィンドウタイトルを表示","槽位下方顯示視窗標題","",""
+"140","untranslated","Slot count not changed: first unbind at least {0} slot(s).","スロット数は変更されませんでした。先に {0} 個以上のスロットの割り当てを解除してください。","槽位數量未變更：請先解除至少 {0} 個槽位的綁定。","",""
+"141","untranslated","Title","タイトル","標題","",""
+"142","untranslated","Title (Regex)","タイトル (Regex)","標題 (Regex)","",""
+"143","untranslated","Invalid title regex: {0}","タイトルの Regex が無効です：{0}","標題 Regex 無效：{0}","",""
+"144","untranslated","Mode","モード","模式","",""
+"145","untranslated","View","表示","檢視","",""
+"146","untranslated","Columns × rows equals the number of slots. Thumbnails are arranged in a grid of equal size, aligned and evenly spaced (in slot order, left to right and top to bottom; bindings are kept). A docked area is narrower, for example 2 columns × 8 rows.
+They are rearranged only when a setting here (or the area position or size) changes; afterwards you can fine-tune by dragging in edit mode, or drag a thumbnail to swap positions.","列 × 行がスロット数になります。サムネイルは同じサイズで、位置と間隔をそろえた格子状に並びます（スロット順に左から右、上から下。割り当ては保持されます）。ドッキング型の領域は幅が狭いので、例えば 2 列 × 8 行にします。
+再配置されるのは、ここの設定（または領域の位置やサイズ）を変更したときだけです。その後は編集モードでドラッグして微調整したり、サムネイルをドラッグして位置を入れ替えたりできます。","欄 × 列即槽位數量，縮圖會排成大小一致、對齊、間距一致的格子（依槽位順序由左到右、由上到下，綁定保留）。靠邊型態的縮圖區較窄，例如 2 欄 × 8 列。
+只在這裡的設定（或縮圖區位置、大小）改變時重排；之後可在編輯模式手動拖曳微調，或直接拖曳縮圖互換位置。","",""
+"147","untranslated","Columns n × rows m","列数 n × 行数 m","欄數 n × 列數 m","",""
+"148","untranslated","Columns × rows must not exceed {0}.","列数 × 行数は {0} を超えられません。","欄數 × 列數不可超過 {0}。","",""
+"149","untranslated","Privilege","権限","權限","",""
+"150","untranslated","ms before launching the next; wait for the window up to","ミリ秒待って次を起動。ウィンドウ待機は最大","毫秒再呼叫下一項；等視窗出現最多","",""
+"151","untranslated","There is no other layout to switch to (at least one must remain, and it cannot be in use by another instance).","切り替えできる他のレイアウトがありません（少なくとも 1 つは残す必要があり、他のインスタンスが使用中のものは使えません）。","沒有其他可切換的佈局（至少要保留一個，且不能是其他實例使用中的）。","",""
+"152","untranslated","Clear slot","スロットをクリア","清除槽位","",""
+"153","untranslated","Clear rule","ルールをクリア","清除規則","",""
+"154","untranslated","Test this entry","この項目をテスト","測試呼叫這一項","",""
+"155","untranslated","Return to the thumbnail wall when the mouse rests at the middle of the left screen edge for about 0.4 seconds (single-monitor wall only; not triggered while dragging a window)","マウスを画面左端の中央に約 0.4 秒置くとサムネイルウォールに戻る（1 画面のウォールのみ。ウィンドウのドラッグ中は反応しません）","滑鼠停在螢幕左緣中間約 0.4 秒時，回到縮圖牆（只對單螢幕的縮圖牆有效；拖曳視窗時不觸發）","",""
+"156","untranslated","Browse…","参照…","瀏覽…","",""
+"157","untranslated","Cannot save the launch config. See logs\thumbdock.log for details.","起動設定ファイルを保存できません。詳細は logs\thumbdock.log を確認してください。","無法儲存呼叫設定檔，詳情見 logs\thumbdock.log。","",""
+"158","untranslated","Cannot launch {0}: {1}","{0} を起動できません：{1}","無法呼叫 {0}：{1}","",""
+"159","untranslated","Cannot start.","起動できません。","無法啟動。","",""
+"160","untranslated","Cannot create the launch config. See logs\thumbdock.log for details.","起動設定ファイルを作成できません。詳細は logs\thumbdock.log を確認してください。","無法建立呼叫設定檔，詳情見 logs\thumbdock.log。","",""
+"161","untranslated","Could not move the window to the current desktop; switched to the window's desktop instead.","ウィンドウを現在のデスクトップに移動できなかったため、ウィンドウのあるデスクトップに切り替えました。","無法把視窗搬到目前桌面，已改為切換到視窗所在的桌面。","",""
+"162","untranslated","Cannot read layout ""{0}"".","レイアウト「{0}」を読み込めません。","無法讀取佈局「{0}」。","",""
+"163","untranslated","Cannot read launch config {0}: {1}","起動設定ファイル {0} を読み込めません：{1}","無法讀取呼叫設定檔{0}：{1}","",""
+"164","untranslated","Cannot open Notepad. Please edit manually: {0}","メモ帳を開けません。手動で編集してください：{0}","無法開啟記事本，請手動編輯：{0}","",""
+"165","untranslated","Focus monitor","フォーカス画面","焦點螢幕","",""
+"166","untranslated","the focus monitor and thumbnail monitor are the same, ","フォーカス画面とサムネイル画面が同じため、","焦點螢幕與縮圖螢幕是同一個，","",""
+"167","untranslated","Start this layout's programs now","このレイアウトのプログラムを今すぐ起動","現在呼叫這個佈局的程式","",""
+"168","untranslated","Current desktop","現在のデスクトップ","目前桌面","",""
+"169","untranslated","Matching windows: {0} (the first is bound when there are several)","一致するウィンドウ：{0} 個（複数ある場合は最初のものを割り当てます）","目前符合的視窗：{0} 個（有多個時綁定第一個）","",""
+"170","untranslated","Got it","了解","知道了","",""
+"171","untranslated","OK","OK","確定","",""
+"172","untranslated","Delete layout ""{0}""?","レイアウト「{0}」を削除しますか？","確定要刪除佈局「{0}」嗎？","",""
+"173","untranslated","sec","秒","秒","",""
+"174","untranslated","Programs and shortcuts|*.exe;*.lnk;*.bat;*.cmd|All files|*.*","プログラムとショートカット|*.exe;*.lnk;*.bat;*.cmd|すべてのファイル|*.*","程式與捷徑|*.exe;*.lnk;*.bat;*.cmd|所有檔案|*.*","",""
+"175","untranslated","Program path","プログラムのパス","程式路徑","",""
+"176","untranslated","Program type","プログラムの種類","程式類型","",""
+"177","untranslated","An empty field means no restriction. After a restart, ThumbDock uses this rule to find the window again automatically.","空欄は制限なしを意味します。再起動後、ThumbDock はこのルールでウィンドウを自動的に探し直します。","空白的欄位代表不限制。重新開機後，ThumbDock 會用這個規則自動找回視窗。","",""
+"178","untranslated","line {0}","{0} 行目","第 {0} 行","",""
+"179","untranslated","Item {0}","項目 {0}","第 {0} 項","",""
+"180","untranslated","Entry {0}: slot {1} duplicates an earlier entry; each slot can have only one entry.","項目 {0}：スロット {1} が前の項目と重複しています。1 つのスロットに設定できる項目は 1 つだけです。","第 {0} 項的槽位 {1} 和前面的項目重複，同一個槽位只能有一項。","",""
+"181","untranslated","Entry {0}: slot {1} exceeds this layout's slot count ({2}) and will be skipped when running.","項目 {0}：スロット {1} はこのレイアウトのスロット数（{2}）を超えているため、実行時にスキップされます。","第 {0} 項的槽位 {1} 超過這個佈局的槽位數（{2}），執行時會被略過。","",""
+"182","untranslated","Entry {0}: the title regex is invalid ({1}).","項目 {0}：タイトルの Regex が無効です（{1}）。","第 {0} 項的標題 Regex 無效（{1}）。","",""
+"183","untranslated","Entry {0} has no program path.","項目 {0} にプログラムのパスがありません。","第 {0} 項還沒有填程式路徑。","",""
+"184","untranslated","Waiting
+{0}","待機中
+{0}","等待中
+{0}","",""
+"185","untranslated","Waiting
+Click to choose a window","待機中
+クリックしてウィンドウを選択","等待中
+點一下選擇視窗","",""
+"186","untranslated","Administrator","管理者","管理員","",""
+"187","untranslated","Administrator (cannot be moved)","管理者（移動不可）","管理員（無法移動）","",""
+"188","untranslated","Exit","終了","結束","",""
+"189","untranslated","URL","URL","網址","",""
+"190","untranslated","Edit…","編集…","編輯…","",""
+"191","untranslated","Edit launch config","起動設定ファイルを編集","編輯呼叫設定檔","",""
+"192","untranslated","Edit launch config — {0}","起動設定ファイルを編集 — {0}","編輯呼叫設定檔 — {0}","",""
+"193","untranslated","Edit launch config…","起動設定ファイルを編集…","編輯呼叫設定檔…","",""
+"194","untranslated","Edit slot positions","スロット位置を編集","編輯槽位位置","",""
+"195","untranslated","Edit slot positions…","スロット位置を編集…","編輯槽位位置…","",""
+"196","untranslated","Edit slot positions ({0} is a fixed layout; use ""Save as"" first)","スロット位置を編集（{0} は固定レイアウト。先に新しいレイアウトとして保存）","編輯槽位位置（{0} 為固定佈局，請先另存為新佈局）","",""
+"197","untranslated","Edit slot positions (close the settings window first)","スロット位置を編集（先に設定ウィンドウを閉じてください）","編輯槽位位置（請先關閉設定視窗）","",""
+"198","untranslated","Edit match rule…","一致ルールを編集…","編輯比對規則…","",""
+"199","untranslated","Thumbnail area position","サムネイル領域の位置","縮圖區位置","",""
+"200","untranslated","Not enough room in the thumbnail zone; all slots were re-arranged (bindings unchanged).","サムネイル領域に十分な空きがないため、すべてのスロットを再配置しました（割り当ては変わりません）。","縮圖區沒有足夠的空位，已重新排列所有槽位（綁定不變）。","",""
+"201","untranslated","That makes {0} thumbnails ({1} × {2}). With {3} or more, screen updates and interaction become noticeably slower.
+
+Apply anyway?","サムネイルは {0} 個（{1} × {2}）になります。{3} 個以上では、画面更新と操作が目に見えて遅くなります。
+
+それでも適用しますか？","縮圖數量 {0} 個（{1} × {2}）。{3} 個以上時，畫面更新與操作會明顯變慢。
+
+仍要套用嗎？","",""
+"202","untranslated","For the thumbnail wall (single-monitor fill) it instead returns to the wall; when the wall is already on top, it returns to the previous window.","サムネイルウォール（1 画面の fill）では、代わりにウォールに戻ります。ウォールが既に最前面にあるときは、直前のウィンドウに戻ります。","縮圖牆（單螢幕 fill）時改為：回到牆；牆已在最上層時，回到上一個視窗。","",""
+"203","untranslated","Thumbnail monitor","サムネイル画面","縮圖螢幕","",""
+"204","untranslated","When reducing: unbind all and rearrange (same as a brand-new layout with this name)","減らすとき：すべて割り当て解除して再配置（同名の新規レイアウトと同じ）","縮減時：全部解除綁定並重新排列（等同同名的全新佈局）","",""
+"205","untranslated","Automatic (follow Windows)","自動（Windows に従う）","自動（跟隨 Windows）","",""
+"206","untranslated","Virtual desktop","仮想デスクトップ","虛擬桌面","",""
+"207","untranslated","Monitor {0}","画面 {0}","螢幕 {0}","",""
+"208","untranslated","Monitor {0} is already used by another ThumbDock; settings were not changed.","画面 {0} は別の ThumbDock が使用中のため、設定は変更されませんでした。","螢幕 {0} 已有另一個 ThumbDock 在使用，設定未變更。","",""
+"209","untranslated","The monitor setup is back; using the layout's original settings.","画面構成が元に戻ったため、レイアウト本来の設定を使用します。","螢幕配置已恢復，使用佈局原本的設定。","",""
+"210","untranslated","Process","プロセス","行程","",""
+"211","untranslated","Process name","プロセス名","行程名稱","",""
+"212","untranslated","Keep updating when covered or on another virtual desktop (--disable-features=CalculateNativeWinOcclusion)","隠れているときや他の仮想デスクトップにあるときも更新を続ける（--disable-features=CalculateNativeWinOcclusion）","被蓋住或在其他虛擬桌面時仍持續更新（--disable-features=CalculateNativeWinOcclusion）","",""
+"213","untranslated","Duplicate","複製","複製","",""
+"214","untranslated","Copy flags","フラグをコピー","複製參數","",""
+"215","untranslated","To reduce to {0} slots, you first need to unbind at least {1} slots.
+
+Right-click a slot and choose ""Clear slot"", or tick ""Unbind all and rearrange"" to reset everything at once.","スロットを {0} 個に減らすには、先に {1} 個以上のスロットの割り当てを解除する必要があります。
+
+スロットを右クリックして「スロットをクリア」を選ぶか、「すべて割り当て解除して再配置」にチェックを付けて一括でリセットしてください。","要縮減到 {0} 個槽位，還需要先解除至少 {1} 個槽位的綁定。
+
+請在槽位上按右鍵選「清除槽位」，或勾選「全部解除綁定並重新排列」一次重設。","",""
+"216","untranslated","The rule is empty: this slot will not auto-bind.","ルールが空です。このスロットは自動割り当てされません。","規則是空的：這個槽位不會自動綁定。","",""
+"217","untranslated","Window match rule","ウィンドウ一致ルール","視窗比對規則","",""
+"218","untranslated","Window class","ウィンドウクラス","視窗類別","",""
+"219","untranslated","Settings…","設定…","設定…","",""
+"220","untranslated","Settings window is open; close it to switch or manage layouts","設定ウィンドウ表示中（閉じるとレイアウトの切り替え・管理ができます）","設定視窗開啟中，請先關閉才能切換或管理佈局","",""
+"221","untranslated","The settings window is open. Close it before switching or managing layouts.","設定ウィンドウが開いています。レイアウトの切り替えや管理は、設定ウィンドウを閉じてから行ってください。","設定視窗開啟中，請先關閉設定視窗才能切換或管理佈局。","",""
+"222","untranslated","The settings window is open. Close it before editing slot positions.","設定ウィンドウが開いています。スロット位置の編集は、設定ウィンドウを閉じてから行ってください。","設定視窗開啟中，請先關閉設定視窗才能編輯槽位位置。","",""
+"223","untranslated","Language","言語","語言","",""
+"224","untranslated","Language changed. Exit and restart ThumbDock for it to take effect.","言語を変更しました。ThumbDock を終了して再起動すると反映されます。","語言已變更，請結束並重新啟動 ThumbDock 後生效。","",""
+"225","untranslated","Language file {0} has {1} entries with invalid placeholders; English is used for them.","言語ファイル {0} にプレースホルダーが不正な項目が {1} 件あります。それらには英語を使用します。","語言檔 {0} 有 {1} 條譯文的佔位符錯誤，已改用英文。","",""
+"226","untranslated","Language file {0} could not be read and was skipped.","言語ファイル {0} を読み込めなかったため、スキップしました。","語言檔 {0} 無法讀取，已略過。","",""
+"227","untranslated","This Windows version cannot move the window to the current desktop; switched to the window's desktop instead.","この Windows バージョンではウィンドウを現在のデスクトップに移動できないため、ウィンドウのあるデスクトップに切り替えました。","這個 Windows 版本無法把視窗搬到目前桌面，已改為切換到視窗所在的桌面。","",""
+"228","untranslated","This layout has no launch config yet.","このレイアウトにはまだ起動設定ファイルがありません。","這個佈局還沒有呼叫設定檔。","",""
+"229","untranslated","After this entry, wait","この項目の後","這項完成後等","",""
+"230","untranslated","Select the working directory","作業フォルダーを選択","選擇工作目錄","",""
+"231","untranslated","Select a program, shortcut or batch file","プログラム、ショートカット、またはバッチファイルを選択","選擇程式、捷徑或批次檔","",""
+"232","untranslated","Choose window","ウィンドウ選択","選擇視窗","",""
+"233","untranslated","Choose window…","ウィンドウ選択…","選擇視窗…","",""
+"234","untranslated","Cannot save yet","まだ保存できません","還不能儲存","",""
+"235","untranslated","Rename layout","レイアウト名を変更","重新命名佈局","",""
+"236","untranslated","Rename current layout…","現在のレイアウト名を変更…","重新命名目前佈局…","",""
+"237","untranslated","Gap (pixels at 100% scaling)","間隔（100% スケール時のピクセル）","間距（100% 縮放時的像素）","",""
+"238","untranslated","Dual monitor","2 画面","雙螢幕","",""
+"239","untranslated","In dual-monitor mode, the focus monitor must differ from the thumbnail monitor.","2 画面モードでは、フォーカス画面とサムネイル画面を別にする必要があります。","雙螢幕模式下，焦點螢幕必須和縮圖螢幕不同。","",""
+"240","untranslated","Off by default. The config file is config\launch\<layout name>.json and can be edited from the tray menu ""Launch programs at startup"".","既定ではオフです。設定ファイルは config\launch\<レイアウト名>.json で、タスクトレイメニューの「起動時のプログラム起動」から編集できます。","預設關閉。設定檔在 config\launch\佈局名.json，可從系統匣「啟動時呼叫程式」編輯。","",""
+"241","untranslated","Class","クラス","類別","",""
+"242","untranslated","Show thumbnail zone","サムネイル領域を表示","顯示縮圖區","",""
+"243","untranslated","Show / hide thumbnail area","サムネイル領域の表示／非表示","顯示／隱藏縮圖區","",""
+"244","untranslated","Click to cycle: unchanged → maximize → fill work area","クリックで切り替え：変更なし → 最大化 → 作業領域に合わせる","點一下切換：不變 → 最大化 → 填滿操作區","",""
+"245","untranslated","On thumbnail click","サムネイルクリック時","點縮圖時","",""
+"246","untranslated"," (primary)","（メイン）","（主）","",""
+"247","untranslated"," (safe mode)","（セーフモード）","（安全模式）","",""
+"248","untranslated","(not specified)","（未指定）","（未指定）","",""
+"249","untranslated","(no program set)","（プログラム未設定）","（未設定程式）","",""
+"250","untranslated","(Not set: binds the first new window that appears after launch)","（未設定：起動後に最初に現れた新しいウィンドウを割り当てます）","（未設定：綁定啟動後第一個新出現的視窗）","",""
+"251","untranslated"," (started with --no-launch)","（--no-launch で起動中）","（本次以 --no-launch 啟動）","",""
+"252","untranslated"," (no config file)","（設定ファイルなし）","（沒有設定檔）","",""
+"253","untranslated","(none)","（なし）","（無）","",""
+"254","untranslated"," (enable it in ""Settings"" first)","（先に「設定」で有効にしてください）","（請先在「設定」啟用）","",""
+"255","untranslated"," (running)","（実行中）","（進行中）","",""
+"256","untranslated","'= number of slots","＝ スロット数","＝ 槽位數","",""

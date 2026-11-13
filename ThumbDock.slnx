@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/ThumbDock/" />
+  <Folder Name="/ThumbDock/tests/">
+    <Project Path="ThumbDock/tests/ThumbDock.Tests/ThumbDock.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/LangTool/LangTool.csproj" />
+  </Folder>
+  <Project Path="ThumbDock/ThumbDock.csproj" />
+</Solution>

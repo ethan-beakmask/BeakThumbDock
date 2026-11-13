@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <AssemblyName>ThumbDock</AssemblyName>
+    <RootNamespace>ThumbDock</RootNamespace>
+    <Version>0.11.6</Version>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <!-- File "Details" tab (exe properties). No company on purpose. -->
+    <Product>BeakThumbDock</Product>
+    <AssemblyTitle>多畫面監控切換工具</AssemblyTitle>
+    <Description>多畫面監控切換工具</Description>
+    <Authors>Ethan Yu</Authors>
+    <Copyright>Copyright © 2026 Ethan Yu</Copyright>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <PlatformTarget>x64</PlatformTarget>
+    <!-- Windows 10+ only (spec section 10); CsWin32 marks Win10 APIs with SupportedOSPlatform. -->
+    <NoWarn>$(NoWarn);CA1416;WFAC010;WFO0003</NoWarn>
+  </PropertyGroup>
+
+  <!-- Release builds: keep the build machine's folder names out of the exe and its pdb. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <PathMap>$(MSBuildProjectDirectory)=/_/ThumbDock,$(NuGetPackageRoot)=/_/nuget/</PathMap>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="tests/**" />
+    <None Remove="tests/**" />
+    <EmbeddedResource Remove="tests/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="app.ico" LogicalName="ThumbDock.app.ico" />
+    <!-- Every Lang/*.json ships inside the exe as ThumbDock.lang.<code>.json (Core/Loc.cs enumerates them). -->
+    <EmbeddedResource Include="Lang/*.json" LogicalName="ThumbDock.lang.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.369" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ThumbDock.Tests" />
+    <InternalsVisibleTo Include="LangTool" />
+  </ItemGroup>
+
+</Project>

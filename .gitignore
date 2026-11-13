@@ -1,0 +1,25 @@
+# Build output
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Published binaries, personal config and logs (releases go to GitHub Releases, not the repo)
+/publish/
+logs/
+*.log
+
+# Local backups and personal material
+/backup-source/
+/20261107之前/
+/ethan-test/
+*.bak
+*.old
+*.migrated
+
+# Development notes (acceptance records, backlog, manual test scripts): kept locally only
+/docs/internal/
+
+# Claude Code local settings
+.claude/
